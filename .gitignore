@@ -1,3 +1,5 @@
+# See https://stackoverflow.com/q/70297207/2173773
+/.coverage
 __pycache__/
 docs/_build/
 .vscode/
