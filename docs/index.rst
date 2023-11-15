@@ -10,7 +10,10 @@ Welcome to ``vscode_cli_helpers.open_file``'s documentation!
     :maxdepth: 1
     :caption: Contents:
 
-    introduction
+    installation
+    usage
+    Development <development>
+    source
 
 Indices and tables
 ==================

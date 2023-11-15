@@ -8,7 +8,7 @@ coverage:
 	coverage report -m
 
 docs:
-	cd "$(ROOT)"/docs && make html
+	cd "$(ROOT)"/docs && make clean && make html
 
 isort:
 	isort --diff --check-only --profile black src/ tests/

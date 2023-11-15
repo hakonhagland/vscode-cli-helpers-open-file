@@ -10,35 +10,6 @@ import click
 from vscode_cli_helpers.open_file.config_reader import ConfigReader
 
 
-# SYNOPSIS
-#
-#   vscode-cli-helper-new-python-script [path]
-#
-# DESCRIPTION
-#
-#   "vscode-cli-helper-new-python-script" is a command line tool for opening a new or existing
-#   Python script in VSCode and navigating to a specific line. If the file does not exist,
-#   it will be created and made executable. Then a template will be written to the file before
-#   opening it in VSCode.
-#
-# EXAMPLES
-#
-#     vscode-cli-helper-new-python-script a.py
-#
-#  Opens a.py in VSCode and navigates to line 1. If a.py does not exist, it will be created
-#  and made executable. Then a template will be written to the file before opening it in VSCode.
-#
-#    vscode-cli-helper-new-python-script a
-#
-#  If "a" exists opens it in VSCode and navigates to line 1. If "a" does not exist,
-#  "a.py" will be created and made executable. Then a template will be written to the file
-#  before opening it in VSCode.
-#
-#    vscode-cli-helper-new-python-script a:10
-#    vscode-cli-helper-new-python-script a.py:10
-#
-# Sames as above but also navigates to line 10
-#
 def find_code_workspace(dir_: Path) -> str:
     """Find the VSCode workspace for the given path."""
     workspaces = list(dir_.glob("*.code-workspace"))
@@ -59,6 +30,31 @@ def add_extension(name: str) -> str:
 @click.command()
 @click.argument("path", type=str, default="t")
 def main(path: str) -> None:
+    """``vscode-cli-helper-new-python-script`` is a command line tool for opening a new or existing
+    Python script in VSCode and navigating to a specific line. If the file does not exist,
+    it will be created and made executable. Then a template will be written to the file before
+    opening it in VS Code.
+
+    EXAMPLES
+
+    .. code-block:: bash
+
+      $ vscode-cli-helper-new-python-script a.py
+
+    Opens ``a.py`` in VS Code and navigates to line 1. If ``a.py`` does not exist, it will be created
+    and made executable. Then a template will be written to the file before opening it in VS Code. ::
+
+      vscode-cli-helper-new-python-script a
+
+    If ``a`` exists, opens it in VS Code and navigates to line 1. If ``a`` does not exist,
+    ``a.py`` will be created and made executable. Then a template will be written to the file
+    before opening it in VSCode. ::
+
+      vscode-cli-helper-new-python-script a:10
+      vscode-cli-helper-new-python-script a.py:10
+
+    Sames as above but also navigates to line 10
+    """
     logging.basicConfig(level=logging.INFO)
     config = ConfigReader()
     filename = Path(path).name
