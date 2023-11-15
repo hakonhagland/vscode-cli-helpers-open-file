@@ -30,10 +30,10 @@ def add_extension(name: str) -> str:
 @click.command()
 @click.argument("path", type=str, default="t")
 def main(path: str) -> None:
-    """``vscode-cli-helper-new-python-script`` is a command line tool for opening a new or existing
-    Python script in VSCode and navigating to a specific line. If the file does not exist,
-    it will be created and made executable. Then a template will be written to the file before
-    opening it in VS Code.
+    """``vscode-cli-helper-new-python-script`` is a command line tool for opening a new
+    or existing Python script in VSCode and navigating to a specific line. If the file
+    does not exist, it will be created and made executable. Then a template will be
+    written to the file before opening it in VS Code.
 
     EXAMPLES
 
@@ -41,8 +41,9 @@ def main(path: str) -> None:
 
       $ vscode-cli-helper-new-python-script a.py
 
-    Opens ``a.py`` in VS Code and navigates to line 1. If ``a.py`` does not exist, it will be created
-    and made executable. Then a template will be written to the file before opening it in VS Code. ::
+    Opens ``a.py`` in VS Code and navigates to line 1. If ``a.py`` does not exist, it will
+    be created and made executable. Then a template will be written to the file before
+    opening it in VS Code. ::
 
       vscode-cli-helper-new-python-script a
 
