@@ -50,6 +50,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alias.html">Create alias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
 </ul>
 
@@ -82,9 +83,11 @@
 <section id="vscode-cli-helper-new-python-script">
 <h2>vscode-cli-helper-new-python-script<a class="headerlink" href="#vscode-cli-helper-new-python-script" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">vscode-cli-helper-new-python-script</span></code> is a command line tool for opening a new
-or existing Python script in VSCode and navigating to a specific line. If the file
-does not exist, it will be created and made executable. Then a template will be
-written to the file before opening it in VS Code.</p>
+or existing Python script in VSCode and navigating to a specific line. Since this is
+a command you might use quite often, you may want to create a short alias for it like
+<cite>ǹy`</cite>. See <a class="reference internal" href="alias.html"><span class="doc">Creating an alias</span></a> for more information.</p>
+<p>If the file does not exist, it will be created and made executable. Then a template
+will be written to the file before opening it in VS Code.</p>
 <p>EXAMPLES</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>vscode-cli-helper-new-python-script<span class="w"> </span>a.py
 </pre></div>
@@ -92,20 +95,33 @@ written to the file before opening it in VS Code.</p>
 <p>Opens <code class="docutils literal notranslate"><span class="pre">a.py</span></code> in VS Code and navigates to line 1. If <code class="docutils literal notranslate"><span class="pre">a.py</span></code> does not exist, it will
 be created and made executable. Then a template will be written to the file before
 opening it in VS Code.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vscode</span><span class="o">-</span><span class="n">cli</span><span class="o">-</span><span class="n">helper</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">script</span> <span class="n">a</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vscode-cli-helper-new-python-script a
 </pre></div>
 </div>
 <p>If <code class="docutils literal notranslate"><span class="pre">a</span></code> exists, opens it in VS Code and navigates to line 1. If <code class="docutils literal notranslate"><span class="pre">a</span></code> does not exist,
 <code class="docutils literal notranslate"><span class="pre">a.py</span></code> will be created and made executable. Then a template will be written to the file
 before opening it in VSCode.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vscode</span><span class="o">-</span><span class="n">cli</span><span class="o">-</span><span class="n">helper</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">script</span> <span class="n">a</span><span class="p">:</span><span class="mi">10</span>
-<span class="n">vscode</span><span class="o">-</span><span class="n">cli</span><span class="o">-</span><span class="n">helper</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">script</span> <span class="n">a</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">10</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vscode-cli-helper-new-python-script a:10
+$ vscode-cli-helper-new-python-script a.py:10
 </pre></div>
 </div>
 <p>Sames as above but also navigates to line 10</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vscode-cli-helper-new-python-script<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>PATH<span class="o">]</span>
 </pre></div>
 </div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-vscode-cli-helper-new-python-script-edit-template">
+<span class="sig-name descname"><span class="pre">--edit-template</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-vscode-cli-helper-new-python-script-edit-template" title="Link to this definition"></a></dt>
+<dd><p>Edit the template file</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-vscode-cli-helper-new-python-script-edit-config">
+<span class="sig-name descname"><span class="pre">--edit-config</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-vscode-cli-helper-new-python-script-edit-config" title="Link to this definition"></a></dt>
+<dd><p>Edit the config file</p>
+</dd></dl>
+
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-vscode-cli-helper-new-python-script-arg-PATH">

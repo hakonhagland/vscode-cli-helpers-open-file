@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Suggesting changes to the code" href="development.html" /> 
+    <link rel="prev" title="Creating an alias" href="alias.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,10 +46,14 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alias.html">Create alias</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Source code</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-vscode_cli_helpers.open_file.script">Module <code class="docutils literal notranslate"><span class="pre">vscode_cli_helpers.open_file.script</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#vscode_cli_helpers.open_file.script.find_code_workspace"><code class="docutils literal notranslate"><span class="pre">find_code_workspace()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#vscode_cli_helpers.open_file.script.add_extension"><code class="docutils literal notranslate"><span class="pre">add_extension()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vscode_cli_helpers.open_file.script.edit_config_file"><code class="docutils literal notranslate"><span class="pre">edit_config_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vscode_cli_helpers.open_file.script.edit_file"><code class="docutils literal notranslate"><span class="pre">edit_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vscode_cli_helpers.open_file.script.edit_template_file"><code class="docutils literal notranslate"><span class="pre">edit_template_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vscode_cli_helpers.open_file.script.find_code_workspace"><code class="docutils literal notranslate"><span class="pre">find_code_workspace()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -87,9 +91,9 @@
 <section id="module-vscode_cli_helpers.open_file.script">
 <span id="module-vscode-cli-helpers-open-file-script"></span><h2>Module <code class="docutils literal notranslate"><span class="pre">vscode_cli_helpers.open_file.script</span></code><a class="headerlink" href="#module-vscode_cli_helpers.open_file.script" title="Link to this heading"></a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="vscode_cli_helpers.open_file.script.find_code_workspace">
-<span class="sig-prename descclassname"><span class="pre">vscode_cli_helpers.open_file.script.</span></span><span class="sig-name descname"><span class="pre">find_code_workspace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vscode_cli_helpers.open_file.script.find_code_workspace" title="Link to this definition"></a></dt>
-<dd><p>Find the VSCode workspace for the given path.</p>
+<dt class="sig sig-object py" id="vscode_cli_helpers.open_file.script.add_extension">
+<span class="sig-prename descclassname"><span class="pre">vscode_cli_helpers.open_file.script.</span></span><span class="sig-name descname"><span class="pre">add_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vscode_cli_helpers.open_file.script.add_extension" title="Link to this definition"></a></dt>
+<dd><p>Add the .py extension if it is missing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
@@ -98,9 +102,42 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="vscode_cli_helpers.open_file.script.add_extension">
-<span class="sig-prename descclassname"><span class="pre">vscode_cli_helpers.open_file.script.</span></span><span class="sig-name descname"><span class="pre">add_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vscode_cli_helpers.open_file.script.add_extension" title="Link to this definition"></a></dt>
-<dd><p>Add the .py extension if it is missing.</p>
+<dt class="sig sig-object py" id="vscode_cli_helpers.open_file.script.edit_config_file">
+<span class="sig-prename descclassname"><span class="pre">vscode_cli_helpers.open_file.script.</span></span><span class="sig-name descname"><span class="pre">edit_config_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vscode_cli_helpers.open_file.script.edit_config_file" title="Link to this definition"></a></dt>
+<dd><p>Edit the config file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="vscode_cli_helpers.open_file.script.edit_file">
+<span class="sig-prename descclassname"><span class="pre">vscode_cli_helpers.open_file.script.</span></span><span class="sig-name descname"><span class="pre">edit_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vscode_cli_helpers.open_file.script.edit_file" title="Link to this definition"></a></dt>
+<dd><p>Edit the config file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="vscode_cli_helpers.open_file.script.edit_template_file">
+<span class="sig-prename descclassname"><span class="pre">vscode_cli_helpers.open_file.script.</span></span><span class="sig-name descname"><span class="pre">edit_template_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vscode_cli_helpers.open_file.script.edit_template_file" title="Link to this definition"></a></dt>
+<dd><p>Edit the template file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="vscode_cli_helpers.open_file.script.find_code_workspace">
+<span class="sig-prename descclassname"><span class="pre">vscode_cli_helpers.open_file.script.</span></span><span class="sig-name descname"><span class="pre">find_code_workspace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vscode_cli_helpers.open_file.script.find_code_workspace" title="Link to this definition"></a></dt>
+<dd><p>Find the VSCode workspace for the given path.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
@@ -115,7 +152,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="development.html" class="btn btn-neutral float-left" title="Suggesting changes to the code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="alias.html" class="btn btn-neutral float-left" title="Creating an alias" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
