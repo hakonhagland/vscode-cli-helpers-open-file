@@ -1,5 +1,5 @@
-Template
-========
+Template configuration
+======================
 
 The configuration file is named ``config.ini`` and is located in sub directory
 ``vscode-cli-helper-open-script`` inside directory ``user_config_dir`` as defined

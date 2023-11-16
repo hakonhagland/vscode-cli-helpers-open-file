@@ -70,9 +70,9 @@ def find_code_workspace(dir_: Path) -> str:
 @click.option("--edit-config", is_flag=True, default=False, help="Edit the config file")
 def main(path: str, edit_template: bool, edit_config: bool) -> None:
     """``vscode-cli-helper-new-python-script`` is a command line tool for opening a new
-    or existing Python script in VSCode and navigating to a specific line. Since this is
+    or existing Python script in VS Code and navigating to a specific line. Since this is
     a command you might use quite often, you may want to create a short alias for it like
-    `ǹy``. See :doc:`Creating an alias <alias>` for more information.
+    ``ny``. See :doc:`Creating an alias <alias>` for more information.
 
     If the file does not exist, it will be created and made executable. Then a template
     will be written to the file before opening it in VS Code.
@@ -98,7 +98,7 @@ def main(path: str, edit_template: bool, edit_config: bool) -> None:
 
     Sames as above but also navigates to line 10
 
-    For more information about editing the template file, see :doc:`Template <template>`.
+    For more information about editing the template file, see :doc:`<template>`.
     """
     logging.basicConfig(level=logging.INFO)
     config = Config()
