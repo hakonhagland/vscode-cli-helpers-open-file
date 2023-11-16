@@ -9,7 +9,7 @@ From PyPI
 
 .. code-block:: bash
 
-    $ pip install vscode-cli-helpers
+    $ pip install vscode-cli-helpers-open-file
 
 From GitHub
 -----------

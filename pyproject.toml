@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "vscode_cli_helpers"
-version = "0.1.0"
+name = "vscode-cli-helpers-open-file"
+version = "0.1.1"
 description = "Open files (with templates) in VSCode from the command line"
 authors = ["Håkon Hægland <hakon.hagland@gmail.com>"]
 readme = "README.md"
-#packages = [{include = "vscode_cli_helpers.open_file", from = "src"}]
+packages = [{include = "vscode_cli_helpers", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

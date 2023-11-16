@@ -97,6 +97,8 @@ def main(path: str, edit_template: bool, edit_config: bool) -> None:
       $ vscode-cli-helper-new-python-script a.py:10
 
     Sames as above but also navigates to line 10
+
+    For more information about editing the template file, see :doc:`Template <template>`.
     """
     logging.basicConfig(level=logging.INFO)
     config = Config()
