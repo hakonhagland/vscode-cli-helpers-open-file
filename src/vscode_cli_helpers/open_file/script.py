@@ -2,12 +2,55 @@
 
 import logging
 import os
+import platform
 import subprocess
 from pathlib import Path
 
 import click
 
-from vscode_cli_helpers.open_file.config_reader import ConfigReader
+from vscode_cli_helpers.open_file.config import Config
+from vscode_cli_helpers.open_file.exceptions import ConfigException
+
+
+def add_extension(name: str) -> str:
+    """Add the .py extension if it is missing."""
+    if "." not in name:
+        return name + ".py"
+    else:
+        return name
+
+
+def edit_config_file(config: Config) -> None:
+    """Edit the config file."""
+    config_path = config.get_config_file()
+    edit_file(config, config_path)
+
+
+def edit_file(config: Config, file: Path) -> None:
+    """Edit the config file."""
+    cfg = config.config["Editor"]
+    if platform.system() == "Linux":
+        editor = cfg["Linux"]
+        cmd = editor
+        args = [str(file)]
+    elif platform.system() == "Darwin":
+        cmd = "open"
+        editor = cfg["MacOS"]
+        args = ["-a", editor, str(file)]
+    elif platform.system() == "Windows":
+        editor = cfg["Windows"]
+        cmd = editor
+        args = [str(file)]
+    else:
+        raise ConfigException(f"Unknown platform: {platform.system()}")
+    logging.info(f"Running: {cmd} {args}")
+    subprocess.Popen([cmd, *args], start_new_session=True)
+
+
+def edit_template_file(config: Config) -> None:
+    """Edit the template file."""
+    path = config.get_template_dir("python")
+    edit_file(config, path)
 
 
 def find_code_workspace(dir_: Path) -> str:
@@ -19,21 +62,20 @@ def find_code_workspace(dir_: Path) -> str:
         return "."
 
 
-def add_extension(name: str) -> str:
-    """Add the .py extension if it is missing."""
-    if "." not in name:
-        return name + ".py"
-    else:
-        return name
-
-
 @click.command()
 @click.argument("path", type=str, default="t")
-def main(path: str) -> None:
+@click.option(
+    "--edit-template", is_flag=True, default=False, help="Edit the template file"
+)
+@click.option("--edit-config", is_flag=True, default=False, help="Edit the config file")
+def main(path: str, edit_template: bool, edit_config: bool) -> None:
     """``vscode-cli-helper-new-python-script`` is a command line tool for opening a new
-    or existing Python script in VSCode and navigating to a specific line. If the file
-    does not exist, it will be created and made executable. Then a template will be
-    written to the file before opening it in VS Code.
+    or existing Python script in VSCode and navigating to a specific line. Since this is
+    a command you might use quite often, you may want to create a short alias for it like
+    `ǹy``. See :doc:`Creating an alias <alias>` for more information.
+
+    If the file does not exist, it will be created and made executable. Then a template
+    will be written to the file before opening it in VS Code.
 
     EXAMPLES
 
@@ -45,19 +87,25 @@ def main(path: str) -> None:
     be created and made executable. Then a template will be written to the file before
     opening it in VS Code. ::
 
-      vscode-cli-helper-new-python-script a
+      $ vscode-cli-helper-new-python-script a
 
     If ``a`` exists, opens it in VS Code and navigates to line 1. If ``a`` does not exist,
     ``a.py`` will be created and made executable. Then a template will be written to the file
     before opening it in VSCode. ::
 
-      vscode-cli-helper-new-python-script a:10
-      vscode-cli-helper-new-python-script a.py:10
+      $ vscode-cli-helper-new-python-script a:10
+      $ vscode-cli-helper-new-python-script a.py:10
 
     Sames as above but also navigates to line 10
     """
     logging.basicConfig(level=logging.INFO)
-    config = ConfigReader()
+    config = Config()
+    if edit_config:
+        edit_config_file(config)
+        return
+    if edit_template:
+        edit_template_file(config)
+        return
     filename = Path(path).name
     dir_ = Path(path).parent
     (basename, line_no) = filename.split(":") if ":" in filename else (filename, None)

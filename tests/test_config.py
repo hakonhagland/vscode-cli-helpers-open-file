@@ -7,7 +7,7 @@ import pytest
 from _pytest.logging import LogCaptureFixture
 from pytest_mock.plugin import MockerFixture
 
-from vscode_cli_helpers.open_file.config_reader import ConfigReader
+from vscode_cli_helpers.open_file.config import Config
 from vscode_cli_helpers.open_file.exceptions import ConfigException
 
 
@@ -24,12 +24,12 @@ class TestMain:
         mocker: MockerFixture,
     ) -> None:
         caplog.set_level(logging.INFO)
-        cfg = ConfigReader()
         data_dir = data_dir_path
         mocker.patch(
             "platformdirs.user_config_dir",
             return_value=data_dir,
         )
+        cfg = Config()
         cfg_dir = cfg.get_config_dir()
         lock_file = cfg_dir / "xyz"
         if is_dir:
@@ -46,17 +46,20 @@ class TestMain:
         elif not is_dir and bad_content:
             assert re.search(r"Config dir lock file: bad content", str(excinfo))
 
-    @pytest.mark.parametrize("exists,is_file", [(True, True), (False, False)])
+    @pytest.mark.parametrize(
+        "exists,is_file,is_dir",
+        [(True, True, False), (False, False, False), (True, False, True)],
+    )
     def test_exceptions2(
         self,
         is_file: bool,
+        is_dir: bool,
         exists: bool,
         caplog: LogCaptureFixture,
         data_dir_path: Path,
         mocker: MockerFixture,
     ) -> None:
         caplog.set_level(logging.INFO)
-        cfg = ConfigReader()
         data_dir = data_dir_path
         config_dir = data_dir
         if is_file:
@@ -64,6 +67,10 @@ class TestMain:
             with open(some_file, "w", encoding="utf_8") as fp:
                 fp.write("xyz")
             config_dir = some_file
+        if is_dir:
+            config_dir = data_dir
+            config_file = config_dir / Config.config_fn
+            config_file.mkdir(parents=True)
         if not exists:
             config_dir = data_dir / "some_dir"
         mocker.patch(
@@ -72,8 +79,12 @@ class TestMain:
         )
         if is_file:
             with pytest.raises(ConfigException) as excinfo:
-                cfg.get_config_dir()
+                Config()
             assert re.search(r"Config directory .* is file", str(excinfo))
+        if is_dir:
+            with pytest.raises(ConfigException) as excinfo:
+                Config()
+            assert re.search(r"Config filename .* filetype is not file", str(excinfo))
         if not exists:
-            cfg.get_config_dir()
+            Config()
             assert True

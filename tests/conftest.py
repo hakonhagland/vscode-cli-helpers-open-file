@@ -5,7 +5,7 @@ from pathlib import Path
 # import typing
 import pytest
 
-from vscode_cli_helpers.open_file.config_reader import ConfigReader
+from vscode_cli_helpers.open_file.config import Config
 
 PytestDataDict = dict[str, str]
 
@@ -29,6 +29,6 @@ def data_dir_path(
 ) -> Path:
     data_dir = tmp_path / test_data["data_dir"]
     data_dir.mkdir()
-    data_dirlock_fn = test_file_path / test_data["data_dir"] / ConfigReader.dirlock_fn
+    data_dirlock_fn = test_file_path / test_data["data_dir"] / Config.dirlock_fn
     shutil.copy(data_dirlock_fn, data_dir)
     return data_dir

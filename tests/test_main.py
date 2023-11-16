@@ -8,6 +8,7 @@ from click.testing import CliRunner
 from pytest_mock.plugin import MockerFixture
 
 import vscode_cli_helpers.open_file.script as script
+from vscode_cli_helpers.open_file.exceptions import ConfigException
 
 
 class TestMain:
@@ -63,3 +64,61 @@ class TestMain:
         gen_file = Path(cli_runner_cwd) / "t.py"
         assert gen_file.exists()
         assert caplog.records[-1].msg.startswith("""Running: ['code', '-g'""")
+
+    @pytest.mark.parametrize("os_name", ["Linux", "Windows", "Darwin", "Unknown"])
+    def test_edit_config_file(
+        self,
+        os_name: str,
+        caplog: LogCaptureFixture,
+        mocker: MockerFixture,
+        data_dir_path: Path,
+        tmp_path: Path,
+    ) -> None:
+        caplog.set_level(logging.INFO)
+        mocker.patch("platform.system", return_value=os_name)
+        data_dir = data_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=data_dir,
+        )
+        mocker.patch("subprocess.Popen", return_value=None)
+        runner = CliRunner()
+        args = ["--edit-config"]
+        if os_name != "Unknown":
+            with runner.isolated_filesystem(temp_dir=tmp_path):
+                runner.invoke(script.main, args)
+            if os_name == "Linux":
+                assert caplog.records[-1].msg.startswith("""Running: gedit""")
+            elif os_name == "Windows":
+                assert caplog.records[-1].msg.startswith("""Running: notepad""")
+            elif os_name == "Darwin":
+                assert caplog.records[-1].msg.startswith(
+                    """Running: open ['-a', 'TextEdit'"""
+                )
+        else:
+            result = runner.invoke(script.main, args)
+            assert isinstance(result.exception, ConfigException)
+            assert (
+                str(result.exception) == "Config exception: Unknown platform: Unknown"
+            )
+
+    def test_edit_template(
+        self,
+        caplog: LogCaptureFixture,
+        mocker: MockerFixture,
+        data_dir_path: Path,
+        tmp_path: Path,
+    ) -> None:
+        caplog.set_level(logging.INFO)
+        mocker.patch("platform.system", return_value="Linux")
+        data_dir = data_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=data_dir,
+        )
+        mocker.patch("subprocess.Popen", return_value=None)
+        runner = CliRunner()
+        args = ["--edit-template"]
+        with runner.isolated_filesystem(temp_dir=tmp_path):
+            runner.invoke(script.main, args)
+        assert caplog.records[-1].msg.startswith("""Running: gedit""")

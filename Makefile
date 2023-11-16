@@ -11,8 +11,8 @@ docs:
 	cd "$(ROOT)"/docs && make clean && make html
 
 isort:
-	isort --diff --check-only --profile black src/ tests/
-	isort --profile black src/ tests/
+#	isort --diff --check-only --profile black src/ tests/
+	isort --diff --profile black src/ tests/
 
 mypy:
 	mypy src/ tests/

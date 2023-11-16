@@ -13,6 +13,7 @@ Welcome to ``vscode_cli_helpers.open_file``'s documentation!
     installation
     usage
     Development <development>
+    Create alias <alias>
     source
 
 Indices and tables
