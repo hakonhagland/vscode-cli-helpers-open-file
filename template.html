@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creating an alias &mdash; vscode-cli-helpers-open-file 0.1 documentation</title>
+  <title>Template &mdash; vscode-cli-helpers-open-file 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Template" href="template.html" />
-    <link rel="prev" title="Suggesting changes to the code" href="development.html" /> 
+    <link rel="next" title="Source code" href="source.html" />
+    <link rel="prev" title="Creating an alias" href="alias.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,13 +47,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Create alias</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#macos">macOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="template.html">Template configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alias.html">Create alias</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Template configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
 </ul>
 
@@ -71,9 +66,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Creating an alias</li>
+      <li class="breadcrumb-item active">Template</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/hakonhagland/vscode_cli_helpers.open_file/blob/main/docs/alias.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/hakonhagland/vscode_cli_helpers.open_file/blob/main/docs/template.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -81,47 +76,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="creating-an-alias">
-<h1>Creating an alias<a class="headerlink" href="#creating-an-alias" title="Link to this heading"></a></h1>
-<p>If you are using the <code class="docutils literal notranslate"><span class="pre">vscode-cli-helper-new-python-script</span></code> command
-line script frequently, you may want to create a short alias for it like <code class="docutils literal notranslate"><span class="pre">ny</span></code>
-to avoid typing the full command each time.</p>
-<section id="linux">
-<h2>Linux<a class="headerlink" href="#linux" title="Link to this heading"></a></h2>
-<p>To create an alias on Linux, add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>
-file (if you are using Bash shell):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helper-new-python-script&#39;</span>
-</pre></div>
+  <section id="template">
+<h1>Template<a class="headerlink" href="#template" title="Link to this heading"></a></h1>
+<p>The configuration file is named <code class="docutils literal notranslate"><span class="pre">config.ini</span></code> and is located in sub directory
+<code class="docutils literal notranslate"><span class="pre">vscode-cli-helper-open-script</span></code> inside directory <code class="docutils literal notranslate"><span class="pre">user_config_dir</span></code> as defined
+by the <a class="reference external" href="https://pypi.org/project/platformdirs/">platformdirs</a> package.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can open the config file in the default editor by passing command line argument
+<code class="docutils literal notranslate"><span class="pre">--edit-config</span></code>.
+See the default config file
+<a class="reference external" href="https://github.com/hakonhagland/vscode_cli_helpers.open_file/blob/main/src/vscode_cli_helpers/open_file/data/default_config.ini">default_config.ini</a>
+for the current values of the default editor. The values you specify in configuration file
+will override the default values.</p>
 </div>
-</section>
-<section id="macos">
-<h2>macOS<a class="headerlink" href="#macos" title="Link to this heading"></a></h2>
-<p>To create an alias on macOS, add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> or
-<code class="docutils literal notranslate"><span class="pre">~/.zshrc</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helper-new-python-script&#39;</span>
-</pre></div>
+<p>The syntax is described in the documentation for the
+<a class="reference external" href="https://docs.python.org/3/library/configparser.html">configparser</a> module
+in the Python standard library.</p>
+<p>The template file is named <code class="docutils literal notranslate"><span class="pre">python.txt</span></code> and is located in sub directory
+<code class="docutils literal notranslate"><span class="pre">vscode-cli-helper-open-script/templates</span></code> inside directory <code class="docutils literal notranslate"><span class="pre">user_config_dir</span></code> as defined
+by the <a class="reference external" href="https://pypi.org/project/platformdirs/">platformdirs</a> package.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can open the template file in the default editor by passing command line argument
+<code class="docutils literal notranslate"><span class="pre">--edit-template</span></code>.
+See the default template file
+<a class="reference external" href="https://github.com/hakonhagland/vscode_cli_helpers.open_file/blob/main/src/vscode_cli_helpers/open_file/data/templates/python.txt">python.txt</a>
+for the current default template. This default template is copied to the template file
+the first time you run the script.</p>
 </div>
-</section>
-<section id="windows">
-<h2>Windows<a class="headerlink" href="#windows" title="Link to this heading"></a></h2>
-<p>To create an alias on Windows (PowerShell), add the following line to your
-<code class="docutils literal notranslate"><span class="pre">%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span></code>
-file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function vscode-cli-helper-new-python-script-function {
-   vscode-cli-helper-new-python-script $args
-}
-SetAlias ny vscode-cli-helper-new-python-script-function
-</pre></div>
-</div>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="development.html" class="btn btn-neutral float-left" title="Suggesting changes to the code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="template.html" class="btn btn-neutral float-right" title="Template" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="alias.html" class="btn btn-neutral float-left" title="Creating an alias" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="source.html" class="btn btn-neutral float-right" title="Source code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
