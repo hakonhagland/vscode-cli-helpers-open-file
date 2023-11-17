@@ -43,10 +43,10 @@ class OpenFile:
         if line_no is not None:
             filename = f"{filename}:{line_no}"
         code = "code"
-        if platform.system() == "Windows":
+        if platform.system() == "Windows":  # pragma: no cover
             # See: https://stackoverflow.com/a/32799942/2173773
             tmp = shutil.which("code.cmd")
-            if tmp is None:  # pragma: no cover
+            if tmp is None:
                 raise OpenFileException("Could not find code.cmd")
             code = tmp
         cmd = [code, "-g", filename, workspace]
