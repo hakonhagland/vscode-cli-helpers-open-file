@@ -29,6 +29,7 @@ To set up an environment for developing and submitting a pull request, you could
      ``(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -``
    * Update ``PATH`` to include the installation folder, e.g.
      ``C:\Users\username\AppData\Roaming\Python\Scripts``
+   * Install the ``make`` command: ``choco install make``
 
 * Then, from the root directory of this repository:
    * run ``poetry install`` to install dependencies into a virtual environment

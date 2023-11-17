@@ -1,10 +1,13 @@
 import logging
 import os
+import platform
+import shutil
 import subprocess
 from pathlib import Path
 from typing import Optional
 
 from vscode_cli_helpers.open_file.config import Config
+from vscode_cli_helpers.open_file.exceptions import OpenFileException
 
 
 class OpenFile:
@@ -39,7 +42,14 @@ class OpenFile:
             logging.info(f"File exists: {path}")
         if line_no is not None:
             filename = f"{filename}:{line_no}"
-        cmd = ["code", "-g", filename, workspace]
+        code = "code"
+        if platform.system() == "Windows":
+            # See: https://stackoverflow.com/a/32799942/2173773
+            tmp = shutil.which("code.cmd")
+            if tmp is None:  # pragma: no cover
+                raise OpenFileException("Could not find code.cmd")
+            code = tmp
+        cmd = [code, "-g", filename, workspace]
         logging.info(f"Running: {cmd} in directory: {dir_}, workspace: {workspace}")
         subprocess.Popen(cmd, cwd=dir_, start_new_session=True)
 

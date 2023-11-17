@@ -1,5 +1,7 @@
 import logging
 import os
+import platform
+import re
 from pathlib import Path
 
 import pytest
@@ -48,6 +50,8 @@ class TestMain:
             "platformdirs.user_config_dir",
             return_value=data_dir,
         )
+        # NOTE: This line must be before we mock subprocess.Popen
+        platform_name = platform.system()
         mocker.patch("subprocess.Popen", return_value=None)
         runner = CliRunner()
         with runner.isolated_filesystem(temp_dir=tmp_path):
@@ -63,7 +67,13 @@ class TestMain:
             runner.invoke(script.main, args)
         gen_file = Path(cli_runner_cwd) / "t.py"
         assert gen_file.exists()
-        assert caplog.records[-1].msg.startswith("""Running: ['code', '-g'""")
+        if platform_name == "Windows":  # pragma: no cover
+            assert re.match(
+                r"""Running: \['.*?code.cmd', '-g'""",
+                caplog.records[-1].msg,
+            )
+        else:  # pragma: no cover
+            assert caplog.records[-1].msg.startswith("""Running: ['code', '-g'""")
 
     @pytest.mark.parametrize("os_name", ["Linux", "Windows", "Darwin", "Unknown"])
     def test_edit_config_file(
