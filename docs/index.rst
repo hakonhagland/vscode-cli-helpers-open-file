@@ -16,6 +16,7 @@ Welcome to ``vscode_cli_helpers.open_file``'s documentation!
     Create alias <alias>
     configuration
     template
+    TODO <todo>
     source
 
 Indices and tables
