@@ -30,7 +30,7 @@ flake8-bugbear = "^23.9.16"
 mypy = "^1.7.0"
 
 [tool.poetry.scripts]
-vscode-cli-helper-new-python-script = "vscode_cli_helpers.open_file.script:main"
+vscode-cli-helper-open-file = "vscode_cli_helpers.open_file.script:main"
 
 [tool.isort]
 profile = "black"

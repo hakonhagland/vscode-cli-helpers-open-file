@@ -1,8 +1,10 @@
 import configparser
 import importlib.resources
 import logging
+import typing
 from configparser import ConfigParser
 from pathlib import Path
+from typing import Optional
 
 import platformdirs
 
@@ -59,27 +61,63 @@ class Config:
     def get_config_file(self) -> Path:
         return self.config_path
 
+    def get_default_template_name(self) -> str:
+        return self.config["Defaults"]["Template"]
+
     def get_template(self, language: str) -> str:
-        path = self.get_template_dir(language)
+        path = self.get_template_path(language)
         logging.info(f"Reading {language} template from: {path}")
         with open(str(path), "r", encoding="utf_8") as fp:
             return fp.read()
 
-    def get_template_dir(self, language: str) -> Path:
+    def get_template_path(self, language: Optional[str]) -> Path:
+        if language is None:
+            language = self.get_default_template_name()
         dir_ = self.get_config_dir()
         template_dir = dir_ / "templates"
         if not template_dir.exists():
             template_dir.mkdir(parents=True)
         path = template_dir / f"{language}.txt"
         if not path.exists():
+            logging.info(
+                f"No template found for {language}. Looking for a default template..."
+            )
             def_path = importlib.resources.files(
                 "vscode_cli_helpers.open_file.data.templates"
             ).joinpath(f"{language}.txt")
-            with open(str(def_path), "r", encoding="utf_8") as fp:
-                template = fp.read()
+            def_path = typing.cast(Path, def_path)
+            template = ""
+            if def_path.exists():
+                logging.info("Default template found. Using it.")
+                with open(str(def_path), "r", encoding="utf_8") as fp:
+                    template = fp.read()
+            else:
+                logging.info(
+                    f"No default template found for {language}.."
+                    f"Creating empty template."
+                )
             with open(path, "w", encoding="utf_8") as fp:
                 fp.write(template)
         return path
+
+    def get_template_extension(self, language: str) -> str:
+        if language in self.config["FileExtensions"]:
+            return self.config["FileExtensions"][language]
+        else:
+            if language in self.config["FileExtensionsAliases"]:
+                language2 = self.config["FileExtensionsAliases"][language]
+                return self.config["FileExtensions"][language2]
+            else:
+                raise ConfigException(
+                    f"Could not find file extension for language: {language}"
+                )
+
+    def is_script(self, language: str) -> bool:
+        script_languages = self.config.getlist("ScriptFiles", "Languages")  # type: ignore
+        if language in script_languages:
+            return True
+        else:
+            return False
 
     def read_config(self) -> None:
         path = self.get_config_file()
@@ -91,7 +129,10 @@ class Config:
         else:
             with open(path, "w", encoding="utf_8") as _:
                 pass  # only create empty file
-        config = configparser.ConfigParser()
+        config = configparser.ConfigParser(
+            # See https://stackoverflow.com/a/53274707/2173773
+            converters={"list": lambda x: [i.strip() for i in x.split(",")]}
+        )
         self.read_defaults(config)
         config.read(str(path))
         logging.info(f"Read config file: {str(path)}")

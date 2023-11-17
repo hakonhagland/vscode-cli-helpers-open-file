@@ -14,7 +14,8 @@ Welcome to ``vscode_cli_helpers.open_file``'s documentation!
     usage
     Development <development>
     Create alias <alias>
-    Template configuration <template>
+    configuration
+    template
     source
 
 Indices and tables

@@ -26,7 +26,7 @@ class TestMain:
         )
         runner = CliRunner()
         result = runner.invoke(script.main, ["--help"])
-        assert result.stdout.startswith("Usage: main [OPTIONS] [PATH]")
+        assert result.stdout.startswith("Usage: main [OPTIONS] COMMAND [ARGS]")
 
     @pytest.mark.parametrize(
         "workspace,add_ext,line_no",
@@ -52,14 +52,14 @@ class TestMain:
         runner = CliRunner()
         with runner.isolated_filesystem(temp_dir=tmp_path):
             cli_runner_cwd = os.getcwd()
-            args = []
+            args = ["open"]
             if workspace:
                 Path("a.code-workspace").touch()
             if add_ext:
                 Path("t.py").touch()
-                args = ["t.py"]
+                args.append("t.py")
             if line_no:
-                args = ["t.py:10"]
+                args.append("t.py:10")
             runner.invoke(script.main, args)
         gen_file = Path(cli_runner_cwd) / "t.py"
         assert gen_file.exists()
@@ -83,7 +83,7 @@ class TestMain:
         )
         mocker.patch("subprocess.Popen", return_value=None)
         runner = CliRunner()
-        args = ["--edit-config"]
+        args = ["edit-config"]
         if os_name != "Unknown":
             with runner.isolated_filesystem(temp_dir=tmp_path):
                 runner.invoke(script.main, args)
@@ -118,7 +118,7 @@ class TestMain:
         )
         mocker.patch("subprocess.Popen", return_value=None)
         runner = CliRunner()
-        args = ["--edit-template"]
+        args = ["-v", "edit-template"]
         with runner.isolated_filesystem(temp_dir=tmp_path):
             runner.invoke(script.main, args)
         assert caplog.records[-1].msg.startswith("""Running: gedit""")

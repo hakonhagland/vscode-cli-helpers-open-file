@@ -979,9 +979,9 @@ socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
 [extras]
-docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-rtd-theme"]
+docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-click", "sphinx-rtd-theme"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "c7359a9126a0550a17517c88b90e54a70b45db1464c0c59716501338b1338ff8"
+content-hash = "51992660b4e3bb5cd418463c588d834e47b2fc53df198aadb48f41ce067515b2"

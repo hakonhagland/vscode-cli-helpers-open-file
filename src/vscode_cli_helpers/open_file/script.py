@@ -1,23 +1,16 @@
 #! /usr/bin/env python3
 
 import logging
-import os
 import platform
 import subprocess
 from pathlib import Path
+from typing import Optional
 
 import click
 
 from vscode_cli_helpers.open_file.config import Config
 from vscode_cli_helpers.open_file.exceptions import ConfigException
-
-
-def add_extension(name: str) -> str:
-    """Add the .py extension if it is missing."""
-    if "." not in name:
-        return name + ".py"
-    else:
-        return name
+from vscode_cli_helpers.open_file.open_file import OpenFile
 
 
 def edit_config_file(config: Config) -> None:
@@ -47,86 +40,90 @@ def edit_file(config: Config, file: Path) -> None:
     subprocess.Popen([cmd, *args], start_new_session=True)
 
 
-def edit_template_file(config: Config) -> None:
+def edit_template_file(config: Config, template: Optional[str]) -> None:
     """Edit the template file."""
-    path = config.get_template_dir("python")
+    path = config.get_template_path(template)
     edit_file(config, path)
 
 
-def find_code_workspace(dir_: Path) -> str:
-    """Find the VSCode workspace for the given path."""
-    workspaces = list(dir_.glob("*.code-workspace"))
-    if len(workspaces) == 1:
-        return Path(workspaces[0]).name
+@click.group()
+@click.option("--verbose", "-v", is_flag=True, help="Show verbose output")
+@click.pass_context
+def main(ctx: click.Context, verbose: bool) -> None:
+    """``vscode-cli-helper-edit-file`` is a command line tool for opening new
+    or existing files in VS Code and navigating to a specific line.
+    """
+    ctx.ensure_object(dict)
+    ctx.obj["VERBOSE"] = verbose
+    if verbose:
+        logging.basicConfig(level=logging.INFO)
     else:
-        return "."
+        logging.basicConfig(level=logging.WARNING)
 
 
-@click.command()
+@main.command()
+def edit_config() -> None:
+    """``vscode-cli-helper-edit-file edit-config`` lets you edit the config file"""
+    config = Config()
+    edit_config_file(config)
+
+
+@main.command()
+@click.argument("template", type=str, required=False)
+def edit_template(template: str) -> None:
+    """``vscode-cli-helper-edit-file edit-template`` lets you edit the template file"""
+    config = Config()
+    edit_template_file(config, template)
+
+
+@main.command()
 @click.argument("path", type=str, default="t")
-@click.option(
-    "--edit-template", is_flag=True, default=False, help="Edit the template file"
-)
-@click.option("--edit-config", is_flag=True, default=False, help="Edit the config file")
-def main(path: str, edit_template: bool, edit_config: bool) -> None:
-    """``vscode-cli-helper-new-python-script`` is a command line tool for opening a new
-    or existing Python script in VS Code and navigating to a specific line. Since this is
-    a command you might use quite often, you may want to create a short alias for it like
-    ``ny``. See :doc:`Creating an alias <alias>` for more information.
+@click.option("--template", type=str, help="specify the template to use")
+def open(path: str, template: Optional[str]) -> None:
+    """``vscode-cli-helper-edit-file open`` lets you open a new
+    or existing file in VS Code and navigating to a specific line number.
+    You may consider create a short alias for the sub commands you use most often, see
+    :doc:`Creating an alias <alias>` for more information.
 
-    If the file does not exist, it will be created and made executable. Then a template
-    will be written to the file before opening it in VS Code.
+    If the ``--template`` option is not used, the file extension of ``PATH`` will be used
+    to determine the template to use. If the file extension is not recognized, a default
+    template will be used. For more information about specifying the default template,
+    see :doc:`/template`.
 
-    EXAMPLES
+    If the file exists, it will be opened in VS Code at line 1 or a specified line number.
+    If the file does not exist, it will be created and the template will be written to the
+    file before opening it in VS Code. If the :doc:`template file type <configuration>` is
+    "script" it will also be made executable.
 
-    .. code-block:: bash
+    EXAMPLES ::
 
-      $ vscode-cli-helper-new-python-script a.py
+      $ vscode-cli-helper-open-file open a.py
 
-    Opens ``a.py`` in VS Code and navigates to line 1. If ``a.py`` does not exist, it will
-    be created and made executable. Then a template will be written to the file before
-    opening it in VS Code. ::
+    If ``a.py`` exists, opens it in VS Code and navigates to line 1. If ``a.py`` does not exist,
+    determines the file type from the extension of ``a.py`` (``.py``). Then creates a
+    file ``a.py`` and writes a template for the file type ``.py`` to the file. If the
+    template type is "script", the file will also be made executable. Then opens the file
+    in VS Code and navigates to line 1. ::
 
-      $ vscode-cli-helper-new-python-script a
+      $ vscode-cli-helper-open-file open a
 
     If ``a`` exists, opens it in VS Code and navigates to line 1. If ``a`` does not exist,
-    ``a.py`` will be created and made executable. Then a template will be written to the file
+    the file type will be determined from the default template (since ``--template`` option
+    is not given). For example, if the default template is "Python", ``a.py`` will be
+    created and made executable. Then the template will be written to the file
     before opening it in VSCode. ::
 
-      $ vscode-cli-helper-new-python-script a:10
-      $ vscode-cli-helper-new-python-script a.py:10
+    \b
+      $ vscode-cli-helper-open-file open a:10
+      $ vscode-cli-helper-open-file a.py:10
 
     Sames as above but also navigates to line 10
 
-    For more information about editing the template file, see :doc:`<template>`.
+    For more information about editing the template file, see :doc:`/template`.
+    For information about specifying the file type of the templates, see :doc:`/configuration`.
+
     """
-    logging.basicConfig(level=logging.INFO)
-    config = Config()
-    if edit_config:
-        edit_config_file(config)
-        return
-    if edit_template:
-        edit_template_file(config)
-        return
-    filename = Path(path).name
-    dir_ = Path(path).parent
-    (basename, line_no) = filename.split(":") if ":" in filename else (filename, None)
-    if basename is not None:
-        filename = add_extension(basename)
-    workspace = find_code_workspace(dir_)
-    path2 = Path(dir_) / filename
-    if not path2.exists():
-        with open(path2, "w", encoding="utf-8") as f:
-            f.write(config.get_template("python"))
-        logging.info(f"Creating file: {path2}")
-        os.chmod(path2, 0o755)
-    else:
-        logging.info(f"File exists: {path}")
-    if line_no is not None:
-        filename = f"{filename}:{line_no}"
-    cmd = ["code", "-g", filename, workspace]
-    logging.info(f"Running: {cmd} in directory: {dir_}, workspace: {workspace}")
-    subprocess.Popen(cmd, cwd=dir_, start_new_session=True)
+    OpenFile(Path(path), template)
 
 
 if __name__ == "__main__":  # pragma: no cover
