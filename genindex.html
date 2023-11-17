@@ -45,7 +45,8 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alias.html">Create alias</a></li>
-<li class="toctree-l1"><a class="reference internal" href="template.html">Template configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
 </ul>
 
@@ -78,11 +79,10 @@
 
 <div class="genindex-jumpbox">
  <a href="#Symbols"><strong>Symbols</strong></a>
- | <a href="#A"><strong>A</strong></a>
  | <a href="#E"><strong>E</strong></a>
- | <a href="#F"><strong>F</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#T"><strong>T</strong></a>
  | <a href="#V"><strong>V</strong></a>
  
 </div>
@@ -90,29 +90,28 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    --edit-config
+    --template
 
       <ul>
-        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-edit-config">vscode-cli-helper-new-python-script command line option</a>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-open-template">vscode-cli-helper-new-python-script-open command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --verbose
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-v">vscode-cli-helper-new-python-script command line option</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    --edit-template
+    -v
 
       <ul>
-        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-edit-template">vscode-cli-helper-new-python-script command line option</a>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-v">vscode-cli-helper-new-python-script command line option</a>
 </li>
       </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source.html#vscode_cli_helpers.open_file.script.add_extension">add_extension() (in module vscode_cli_helpers.open_file.script)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -126,14 +125,6 @@
       <li><a href="source.html#vscode_cli_helpers.open_file.script.edit_file">edit_file() (in module vscode_cli_helpers.open_file.script)</a>
 </li>
       <li><a href="source.html#vscode_cli_helpers.open_file.script.edit_template_file">edit_template_file() (in module vscode_cli_helpers.open_file.script)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="F">F</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source.html#vscode_cli_helpers.open_file.script.find_code_workspace">find_code_workspace() (in module vscode_cli_helpers.open_file.script)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -158,7 +149,20 @@
     PATH
 
       <ul>
-        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-arg-PATH">vscode-cli-helper-new-python-script command line option</a>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-open-arg-PATH">vscode-cli-helper-new-python-script-open command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    TEMPLATE
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-edit-template-arg-TEMPLATE">vscode-cli-helper-new-python-script-edit-template command line option</a>
 </li>
       </ul></li>
   </ul></td>
@@ -171,15 +175,29 @@
     vscode-cli-helper-new-python-script command line option
 
       <ul>
-        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-edit-config">--edit-config</a>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-v">--verbose</a>
 </li>
-        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-edit-template">--edit-template</a>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-v">-v</a>
 </li>
-        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-arg-PATH">PATH</a>
+      </ul></li>
+      <li>
+    vscode-cli-helper-new-python-script-edit-template command line option
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-edit-template-arg-TEMPLATE">TEMPLATE</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    vscode-cli-helper-new-python-script-open command line option
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-open-template">--template</a>
+</li>
+        <li><a href="usage.html#cmdoption-vscode-cli-helper-new-python-script-open-arg-PATH">PATH</a>
+</li>
+      </ul></li>
       <li>
     vscode_cli_helpers.open_file.script
 

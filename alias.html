@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Template configuration" href="template.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
     <link rel="prev" title="Suggesting changes to the code" href="development.html" /> 
 </head>
 
@@ -53,7 +53,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="template.html">Template configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
 </ul>
 
@@ -83,14 +84,14 @@
              
   <section id="creating-an-alias">
 <h1>Creating an alias<a class="headerlink" href="#creating-an-alias" title="Link to this heading"></a></h1>
-<p>If you are using the <code class="docutils literal notranslate"><span class="pre">vscode-cli-helper-new-python-script</span></code> command
+<p>If you are using the <code class="docutils literal notranslate"><span class="pre">vscode-cli-helper-open-file</span> <span class="pre">open</span></code> command
 line script frequently, you may want to create a short alias for it like <code class="docutils literal notranslate"><span class="pre">ny</span></code>
 to avoid typing the full command each time.</p>
 <section id="linux">
 <h2>Linux<a class="headerlink" href="#linux" title="Link to this heading"></a></h2>
 <p>To create an alias on Linux, add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>
 file (if you are using Bash shell):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helper-new-python-script&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helper-open-file open --template=Python&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -98,7 +99,7 @@ file (if you are using Bash shell):</p>
 <h2>macOS<a class="headerlink" href="#macos" title="Link to this heading"></a></h2>
 <p>To create an alias on macOS, add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> or
 <code class="docutils literal notranslate"><span class="pre">~/.zshrc</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helper-new-python-script&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helper-open-file open --template=Python&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -107,10 +108,10 @@ file (if you are using Bash shell):</p>
 <p>To create an alias on Windows (PowerShell), add the following line to your
 <code class="docutils literal notranslate"><span class="pre">%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span></code>
 file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function vscode-cli-helper-new-python-script-function {
-   vscode-cli-helper-new-python-script $args
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function vscode-cli-helper-open-file-function {
+   vscode-cli-helper-new-open-file open --template=Python $args
 }
-SetAlias ny vscode-cli-helper-new-python-script-function
+SetAlias ny vscode-cli-helper-open-file-function
 </pre></div>
 </div>
 </section>
@@ -121,7 +122,7 @@ SetAlias ny vscode-cli-helper-new-python-script-function
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="development.html" class="btn btn-neutral float-left" title="Suggesting changes to the code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="template.html" class="btn btn-neutral float-right" title="Template configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
