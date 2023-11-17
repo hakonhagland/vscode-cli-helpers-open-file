@@ -33,6 +33,13 @@ in the Python standard library.
   Files created from templates "Bash", "Python", "Perl", "Ruby", and "Tcl" will now be made
   executable.
 
+.. note::
+    It is not possible to make the python script directly executable on Windows, see
+    section :doc:`windows` for more information of how to work around this.
+
+    The ``Languages`` option is case-sensitive and must match one of the names in the
+    ``[FileExtensions]`` section.
+
 * To specify the editor to use for opening files, use the OS name option in the
   ``[Editor]`` section. Example ::
 
