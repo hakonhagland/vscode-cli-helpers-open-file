@@ -44,6 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
@@ -55,6 +56,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="template.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
 </ul>
@@ -109,10 +111,9 @@ file (if you are using Bash shell):</p>
 <p>To create an alias on Windows (PowerShell), add the following line to your
 <code class="docutils literal notranslate"><span class="pre">%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span></code>
 file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function vscode-cli-helper-open-file-function {
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function ny($args) {
    vscode-cli-helper-new-open-file open --template=Python $args
 }
-SetAlias ny vscode-cli-helper-open-file-function
 </pre></div>
 </div>
 </section>

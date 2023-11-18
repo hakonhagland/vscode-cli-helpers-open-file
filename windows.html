@@ -18,7 +18,9 @@
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TODO (further work)" href="todo.html" />
+    <link rel="prev" title="Templates" href="template.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,13 +43,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alias.html">Create alias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="template.html">Templates</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Windows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-make-a-script-executable">How to make a script executable</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
 </ul>
@@ -84,7 +91,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">python</span> <span class="n">myscript</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>To avoid having to type <code class="docutils literal notranslate"><span class="pre">`python</span></code> in front of the script, you can try:</p>
+<p>To avoid having to type <code class="docutils literal notranslate"><span class="pre">python</span></code> in front of the script, you can try the following
+approaches :</p>
 <ul>
 <li><p>Make a Batch file wrapper for the python script, or</p></li>
 <li><p>Create a PowerShell function wrapping the python command, e.g.</p>
@@ -95,6 +103,20 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">py</span> <span class="n">myscript</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
+<p>Or,</p>
+</li>
+<li><p>On Windows, the standard Python installer already associates the <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension
+with a file type (<code class="docutils literal notranslate"><span class="pre">Python.File</span></code>) and gives that file type an open command that
+runs the interpreter, e.g. <code class="docutils literal notranslate"><span class="pre">D:\Program</span> <span class="pre">Files\Python\python.exe</span> <span class="pre">&quot;%1&quot;</span> <span class="pre">%*</span></code>. This is
+enough to make scripts executable from the command prompt as <code class="docutils literal notranslate"><span class="pre">foo.py</span></code>.</p>
+<p>A drawback of this approach is that, if you are using multiple Python installations
+concurrently, you may need to re-associate <code class="docutils literal notranslate"><span class="pre">.py</span></code> files with the correct interpreter.
+Also, the CMD or PowerShell will open a new console window for each script run. This
+can be inconvenient since the new console window will disappear when the script
+finishes executing.</p>
+<p>If you’d rather be able to execute the script by simple typing <code class="docutils literal notranslate"><span class="pre">foo</span></code> with no extension
+you need to add <code class="docutils literal notranslate"><span class="pre">.py</span></code> to the <code class="docutils literal notranslate"><span class="pre">PATHEXT</span></code> environment variable.</p>
+<p>See the <a class="reference external" href="https://docs.python.org/3/faq/windows.html">Python Windows FAQ</a> for more information.</p>
 </li>
 </ul>
 </section>
@@ -103,7 +125,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="template.html" class="btn btn-neutral float-left" title="Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="todo.html" class="btn btn-neutral float-right" title="TODO (further work)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

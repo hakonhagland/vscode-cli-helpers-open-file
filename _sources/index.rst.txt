@@ -10,12 +10,14 @@ Welcome to ``vscode_cli_helpers.open_file``'s documentation!
     :maxdepth: 1
     :caption: Contents:
 
+    introduction
     installation
     usage
     Development <development>
     Create alias <alias>
     configuration
     template
+    windows
     TODO <todo>
     source
 
