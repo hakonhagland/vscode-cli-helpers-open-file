@@ -28,7 +28,6 @@ To create an alias on Windows (PowerShell), add the following line to your
 ``%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1``
 file: ::
 
-    function vscode-cli-helper-open-file-function {
+    function ny($args) {
        vscode-cli-helper-new-open-file open --template=Python $args
     }
-    SetAlias ny vscode-cli-helper-open-file-function

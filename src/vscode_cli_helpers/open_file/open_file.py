@@ -27,17 +27,7 @@ class OpenFile:
         workspace = self.find_code_workspace(dir_)
         path2 = Path(dir_) / filename
         if not path2.exists():
-            with open(path2, "w", encoding="utf-8") as f:
-                f.write(self.config.get_template(self.template_name))
-            logging.info(f"Creating file: {path2}")
-            if self.config.is_script(self.template_name):
-                os.chmod(path2, 0o755)
-                logging.info(f"Setting file permissions to 755: {path2}")
-            else:
-                logging.info(
-                    f"Not script file type {template_name}. "
-                    f"Not setting file permissions: {path2}"
-                )
+            self.prepare_new_file(path2)
         else:
             logging.info(f"File exists: {path}")
         if line_no is not None:
@@ -69,3 +59,19 @@ class OpenFile:
             return Path(workspaces[0]).name
         else:
             return "."
+
+    def prepare_new_file(self, path: Path) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(self.config.get_template(self.template_name))
+        logging.info(f"Creating file: {path}")
+        if platform.system() == "Windows":
+            logging.info("Not making file executable on Windows")
+        else:
+            if self.config.is_script(self.template_name):
+                os.chmod(path, 0o755)
+                logging.info(f"Setting file permissions to 755: {path}")
+            else:
+                logging.info(
+                    f"Not script file type {self.template_name}. "
+                    f"Not setting file permissions: {path}"
+                )
