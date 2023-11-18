@@ -44,13 +44,33 @@ class OpenFile:
         subprocess.Popen(cmd, cwd=dir_, start_new_session=True)
 
     def add_extension(self, name: str) -> str:
-        """Add the file extension if it is missing."""
-        if "." not in name:
-            ext = self.config.get_template_extension(self.template_name)
-            logging.info(f"Adding extension: {ext} to file: {name}")
-            return name + ext
-        else:
-            return name
+        """Add the file extension if it is missing.
+
+        Examples:
+
+        * ``hello" -> ``hello.cpp``
+        * ``hello.cpp" -> ``hello.cpp``
+        * ``.cpp`` -> ``.cpp.cpp``
+        * ``.hello`` -> ``.hello.cpp`` (note: not ``.hello``)
+        * ``a.hello`` -> ``a.hello.cpp`` (note: not ``a.hello``)
+        * ``hello.`` -> ``hello.cpp`` (note: not ``hello..cpp``)
+        """
+        parts = name.rsplit(sep=".", maxsplit=1)
+        ext = self.config.get_template_extension(self.template_name)
+        ext = ext.lstrip(".")
+        if len(parts) == 1:
+            return parts[0] + f".{ext}"
+        else:  # len(parts) == 2:
+            body = parts[0]
+            ext2 = parts[1]
+            if len(body) == 0:
+                return f".{ext2}.{ext}"
+            elif len(ext2) == 0:
+                return body + f".{ext}"
+            elif ext2 == ext:
+                return parts[0] + f".{ext}"
+            else:
+                return body + f".{ext2}.{ext}"
 
     def find_code_workspace(self, dir_: Path) -> str:
         """Find the VSCode workspace for the given path."""

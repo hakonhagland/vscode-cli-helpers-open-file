@@ -82,13 +82,13 @@ def edit_template(template: str) -> None:
 def open(path: str, template: Optional[str]) -> None:
     """``vscode-cli-helper-edit-file open`` lets you open a new
     or existing file in VS Code and navigating to a specific line number.
-    You may consider create a short alias for the sub commands you use most often, see
+    You may consider creating a short alias for the sub commands you use most often, see
     :doc:`Creating an alias <alias>` for more information.
 
     If the ``--template`` option is not used, the file extension of ``PATH`` will be used
-    to determine the template to use. If the file extension is not recognized, a default
-    template will be used. For more information about specifying the default template,
-    see :doc:`/template`.
+    to determine the template to use. If the :doc:`file extension <file_extension>` is not
+    recognized, a default template will be used. For more information about specifying the
+    default template, see :doc:`/template`.
 
     If the file exists, it will be opened in VS Code at line 1 or a specified line number.
     If the file does not exist, it will be created and the template will be written to the

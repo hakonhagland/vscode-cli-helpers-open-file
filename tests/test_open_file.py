@@ -35,12 +35,13 @@ class TestMain:
         else:
             args.extend(["--template=C++", "hello.cpp"])
         with runner.isolated_filesystem(temp_dir=tmp_path):
-            runner.invoke(script.main, args)
+            res = runner.invoke(script.main, args)
         if language == "C":
             assert caplog.records[-1].msg.startswith(
                 """Running: ['code', '-g', 'hello.c'"""
             )
         else:
+            assert res.exception is None
             assert caplog.records[-1].msg.startswith(
                 """Running: ['code', '-g', 'hello.cpp'"""
             )
@@ -76,6 +77,42 @@ class TestMain:
                 "Config exception: Could not find file extension "
                 "for language: foobar"
             )
+
+    @pytest.mark.parametrize(
+        "name,expected",
+        [
+            ("hello", "hello.cpp"),
+            ("hello.cpp", "hello.cpp"),
+            (".cpp", ".cpp.cpp"),
+            (".hello", ".hello.cpp"),
+            ("a.hello", "a.hello.cpp"),
+            ("hello.", "hello.cpp"),
+        ],
+    )
+    def test_extension2(
+        self,
+        name: str,
+        expected: str,
+        caplog: LogCaptureFixture,
+        mocker: MockerFixture,
+        data_dir_path: Path,
+        tmp_path: Path,
+    ) -> None:
+        caplog.set_level(logging.INFO)
+        mocker.patch("platform.system", return_value="Linux")
+        data_dir = data_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=data_dir,
+        )
+        mocker.patch("subprocess.Popen", return_value=None)
+        runner = CliRunner()
+        args = ["-v", "open", "--template=C++", name]
+        with runner.isolated_filesystem(temp_dir=tmp_path):
+            runner.invoke(script.main, args)
+        assert caplog.records[-1].msg.startswith(
+            f"""Running: ['code', '-g', '{expected}'"""
+        )
 
     @pytest.mark.parametrize("platform", ["Linux", "Windows"])
     def test_chmod(
