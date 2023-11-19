@@ -78,6 +78,36 @@ class TestMain:
                 "for language: foobar"
             )
 
+    @pytest.mark.parametrize("language", ["Perl", "YAML"])
+    def test_default_name(
+        self,
+        language: str,
+        caplog: LogCaptureFixture,
+        mocker: MockerFixture,
+        data_dir_path: Path,
+        tmp_path: Path,
+    ) -> None:
+        caplog.set_level(logging.INFO)
+        mocker.patch("platform.system", return_value="Linux")
+        data_dir = data_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=data_dir,
+        )
+        mocker.patch("subprocess.Popen", return_value=None)
+        runner = CliRunner()
+        args = ["-v", "open", f"--template={language}"]
+        with runner.isolated_filesystem(temp_dir=tmp_path):
+            runner.invoke(script.main, args)
+        if language == "Perl":
+            assert caplog.records[-1].msg.startswith(
+                """Running: ['code', '-g', 'p.pl'"""
+            )
+        else:
+            assert caplog.records[-1].msg.startswith(
+                """Running: ['code', '-g', 't.yaml'"""
+            )
+
     @pytest.mark.parametrize(
         "name,expected",
         [

@@ -61,6 +61,12 @@ class Config:
     def get_config_file(self) -> Path:
         return self.config_path
 
+    def get_default_filename(self, template_name: str) -> str:
+        if template_name in self.config["DefaultFilenames"]:
+            return self.config["DefaultFilenames"][template_name]
+        else:
+            return self.config["Defaults"]["Filename"]
+
     def get_default_template_name(self) -> str:
         return self.config["Defaults"]["Template"]
 

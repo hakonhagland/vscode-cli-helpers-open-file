@@ -11,11 +11,13 @@ from vscode_cli_helpers.open_file.exceptions import OpenFileException
 
 
 class OpenFile:
-    def __init__(self, path: Path, template_name: Optional[str]) -> None:
-        self.path = path
+    def __init__(self, path: Optional[str], template_name: Optional[str]) -> None:
         self.config = Config()
         if template_name is None:
             template_name = self.config.get_default_template_name()
+        if path is None:
+            path = self.config.get_default_filename(template_name)
+        self.path = path
         self.template_name = template_name
         filename = Path(path).name
         dir_ = Path(path).parent

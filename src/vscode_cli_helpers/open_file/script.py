@@ -77,9 +77,9 @@ def edit_template(template: str) -> None:
 
 
 @main.command()
-@click.argument("path", type=str, default="t")
+@click.argument("path", type=str, required=False)
 @click.option("--template", type=str, help="specify the template to use")
-def open(path: str, template: Optional[str]) -> None:
+def open(path: Optional[str], template: Optional[str]) -> None:
     """``vscode-cli-helper-edit-file open`` lets you open a new
     or existing file in VS Code and navigating to a specific line number.
     You may consider creating a short alias for the sub commands you use most often, see
@@ -94,6 +94,9 @@ def open(path: str, template: Optional[str]) -> None:
     If the file does not exist, it will be created and the template will be written to the
     file before opening it in VS Code. If the :doc:`template file type <configuration>` is
     "script" it will also be made executable.
+
+    If no filename is given for PATH, a default filename will be used. For more information
+    about specifying the default filename, see :doc:`/default_filename`.
 
     EXAMPLES ::
 
@@ -123,7 +126,7 @@ def open(path: str, template: Optional[str]) -> None:
     For information about specifying the file type of the templates, see :doc:`/configuration`.
 
     """
-    OpenFile(Path(path), template)
+    OpenFile(path, template)
 
 
 if __name__ == "__main__":  # pragma: no cover
