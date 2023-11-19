@@ -2,7 +2,7 @@ Configuration
 =============
 
 The configuration file is named ``config.ini`` and is located in sub directory
-``vscode-cli-helper-open-script`` inside directory ``user_config_dir`` as defined
+``vscode-cli-helpers-open-script`` inside directory ``user_config_dir`` as defined
 by the `platformdirs <https://pypi.org/project/platformdirs/>`_ package.
 
 .. note::

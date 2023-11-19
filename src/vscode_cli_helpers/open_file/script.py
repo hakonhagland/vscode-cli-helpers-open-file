@@ -50,7 +50,7 @@ def edit_template_file(config: Config, template: Optional[str]) -> None:
 @click.option("--verbose", "-v", is_flag=True, help="Show verbose output")
 @click.pass_context
 def main(ctx: click.Context, verbose: bool) -> None:
-    """``vscode-cli-helper-edit-file`` is a command line tool for opening new
+    """``vscode-cli-helpers-edit-file`` is a command line tool for opening new
     or existing files in VS Code and navigating to a specific line.
     """
     ctx.ensure_object(dict)
@@ -63,7 +63,7 @@ def main(ctx: click.Context, verbose: bool) -> None:
 
 @main.command()
 def edit_config() -> None:
-    """``vscode-cli-helper-edit-file edit-config`` lets you edit the config file"""
+    """``vscode-cli-helpers-edit-file edit-config`` lets you edit the config file"""
     config = Config()
     edit_config_file(config)
 
@@ -71,7 +71,7 @@ def edit_config() -> None:
 @main.command()
 @click.argument("template", type=str, required=False)
 def edit_template(template: str) -> None:
-    """``vscode-cli-helper-edit-file edit-template`` lets you edit the template file"""
+    """``vscode-cli-helpers-edit-file edit-template`` lets you edit the template file"""
     config = Config()
     edit_template_file(config, template)
 
@@ -80,7 +80,7 @@ def edit_template(template: str) -> None:
 @click.argument("path", type=str, required=False)
 @click.option("--template", type=str, help="specify the template to use")
 def open(path: Optional[str], template: Optional[str]) -> None:
-    """``vscode-cli-helper-edit-file open`` lets you open a new
+    """``vscode-cli-helpers-edit-file open`` lets you open a new
     or existing file in VS Code and navigating to a specific line number.
     You may consider creating a short alias for the sub commands you use most often, see
     :doc:`Creating an alias <alias>` for more information.
@@ -100,7 +100,7 @@ def open(path: Optional[str], template: Optional[str]) -> None:
 
     EXAMPLES ::
 
-      $ vscode-cli-helper-open-file open a.py
+      $ vscode-cli-helpers-open-file open a.py
 
     If ``a.py`` exists, opens it in VS Code and navigates to line 1. If ``a.py`` does not exist,
     determines the file type from the extension of ``a.py`` (``.py``). Then creates a
@@ -108,7 +108,7 @@ def open(path: Optional[str], template: Optional[str]) -> None:
     template type is "script", the file will also be made executable. Then opens the file
     in VS Code and navigates to line 1. ::
 
-      $ vscode-cli-helper-open-file open a
+      $ vscode-cli-helpers-open-file open a
 
     If ``a`` exists, opens it in VS Code and navigates to line 1. If ``a`` does not exist,
     the file type will be determined from the default template (since ``--template`` option
@@ -117,8 +117,8 @@ def open(path: Optional[str], template: Optional[str]) -> None:
     before opening it in VSCode. ::
 
     \b
-      $ vscode-cli-helper-open-file open a:10
-      $ vscode-cli-helper-open-file a.py:10
+      $ vscode-cli-helpers-open-file open a:10
+      $ vscode-cli-helpers-open-file a.py:10
 
     Sames as above but also navigates to line 10
 

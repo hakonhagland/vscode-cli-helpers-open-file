@@ -1,7 +1,7 @@
 Default Filename
 ================
 
-If no filename is given to ``vscode-cli-helper-open-file open``
+If no filename is given to ``vscode-cli-helpers-open-file open``
 (see :doc:`usage`), a default filename will be used. The default filename is
 given by option ``Filename`` in section ``[Defaults]`` of the configuration file.
 See :doc:`configuration` for more information about the configuration file.

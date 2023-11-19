@@ -16,7 +16,7 @@ class Config:
     #   pytest before creating an object of this class
     dirlock_fn = ".dirlock"
     config_fn = "config.ini"
-    appname = "vscode-cli-helper-open-script"
+    appname = "vscode-cli-helpers-open-file"
 
     def __init__(self) -> None:
         self.lockfile_string = "author=HH"
