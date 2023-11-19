@@ -18,7 +18,9 @@
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Windows" href="windows.html" />
+    <link rel="prev" title="Default Filename" href="default_filename.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,7 +43,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
@@ -49,6 +51,8 @@
 <li class="toctree-l1"><a class="reference internal" href="alias.html">Create alias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="template.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="default_filename.html">Default Filename</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">File Extension</a></li>
 <li class="toctree-l1"><a class="reference internal" href="windows.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
@@ -82,13 +86,25 @@
 <h1>File Extension<a class="headerlink" href="#file-extension" title="Link to this heading"></a></h1>
 <p>The script will look at the filename to determine its file extension.
 The file is split into parts by the dot character. The last part is
-considered the file extension. If the filename does not contain a dot</p>
+considered the file extension. The specific rules used are best
+illustrated by the following examples for the template <code class="docutils literal notranslate"><span class="pre">C++</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hello</span></code> → <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> → <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.cpp</span></code> → <code class="docutils literal notranslate"><span class="pre">.cpp.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.hello</span></code> → <code class="docutils literal notranslate"><span class="pre">.hello.cpp</span></code> (note: not <code class="docutils literal notranslate"><span class="pre">.hello</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a.hello</span></code> → <code class="docutils literal notranslate"><span class="pre">a.hello.cpp</span></code> (note: not <code class="docutils literal notranslate"><span class="pre">a.hello</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hello.</span></code> → <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> (note: not <code class="docutils literal notranslate"><span class="pre">hello..cpp</span></code>)</p></li>
+</ul>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="default_filename.html" class="btn btn-neutral float-left" title="Default Filename" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="windows.html" class="btn btn-neutral float-right" title="Windows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

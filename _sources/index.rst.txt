@@ -17,6 +17,8 @@ Welcome to ``vscode_cli_helpers.open_file``'s documentation!
     Create alias <alias>
     configuration
     template
+    default_filename
+    file_extension
     windows
     TODO <todo>
     source
