@@ -50,7 +50,7 @@ def edit_template_file(config: Config, template: Optional[str]) -> None:
 @click.option("--verbose", "-v", is_flag=True, help="Show verbose output")
 @click.pass_context
 def main(ctx: click.Context, verbose: bool) -> None:
-    """``vscode-cli-helpers-edit-file`` is a command line tool for opening new
+    """``vscode-cli-helpers-open-file`` is a command line tool for opening new
     or existing files in VS Code and navigating to a specific line.
     """
     ctx.ensure_object(dict)
@@ -63,7 +63,7 @@ def main(ctx: click.Context, verbose: bool) -> None:
 
 @main.command()
 def edit_config() -> None:
-    """``vscode-cli-helpers-edit-file edit-config`` lets you edit the config file"""
+    """``vscode-cli-helpers-open-file edit-config`` lets you edit the config file"""
     config = Config()
     edit_config_file(config)
 
@@ -71,7 +71,7 @@ def edit_config() -> None:
 @main.command()
 @click.argument("template", type=str, required=False)
 def edit_template(template: str) -> None:
-    """``vscode-cli-helpers-edit-file edit-template`` lets you edit the template file"""
+    """``vscode-cli-helpers-open-file edit-template`` lets you edit the template file"""
     config = Config()
     edit_template_file(config, template)
 
@@ -80,7 +80,7 @@ def edit_template(template: str) -> None:
 @click.argument("path", type=str, required=False)
 @click.option("--template", type=str, help="specify the template to use")
 def open(path: Optional[str], template: Optional[str]) -> None:
-    """``vscode-cli-helpers-edit-file open`` lets you open a new
+    """``vscode-cli-helpers-open-file open`` lets you open a new
     or existing file in VS Code and navigating to a specific line number.
     You may consider creating a short alias for the sub commands you use most often, see
     :doc:`Creating an alias <alias>` for more information.
