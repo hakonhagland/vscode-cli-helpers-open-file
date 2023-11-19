@@ -2,7 +2,7 @@ Templates
 =========
 
 The template files are located in subdirectory
-``vscode-cli-helper-open-script/templates`` inside directory ``user_config_dir`` as defined
+``vscode-cli-helpers-open-script/templates`` inside directory ``user_config_dir`` as defined
 by the `platformdirs <https://pypi.org/project/platformdirs/>`_ package.
 
 .. note::

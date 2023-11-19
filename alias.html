@@ -89,14 +89,14 @@
              
   <section id="creating-an-alias">
 <h1>Creating an alias<a class="headerlink" href="#creating-an-alias" title="Link to this heading"></a></h1>
-<p>If you are using the <code class="docutils literal notranslate"><span class="pre">vscode-cli-helper-open-file</span> <span class="pre">open</span></code> command
+<p>If you are using the <code class="docutils literal notranslate"><span class="pre">vscode-cli-helpers-open-file</span> <span class="pre">open</span></code> command
 line script frequently, you may want to create a short alias for it like <code class="docutils literal notranslate"><span class="pre">ny</span></code>
 to avoid typing the full command each time.</p>
 <section id="linux">
 <h2>Linux<a class="headerlink" href="#linux" title="Link to this heading"></a></h2>
 <p>To create an alias on Linux, add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>
 file (if you are using Bash shell):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helper-open-file open --template=Python&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helpers-open-file open --template=Python&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -104,7 +104,7 @@ file (if you are using Bash shell):</p>
 <h2>macOS<a class="headerlink" href="#macos" title="Link to this heading"></a></h2>
 <p>To create an alias on macOS, add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> or
 <code class="docutils literal notranslate"><span class="pre">~/.zshrc</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helper-open-file open --template=Python&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helpers-open-file open --template=Python&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -114,7 +114,7 @@ file (if you are using Bash shell):</p>
 <code class="docutils literal notranslate"><span class="pre">%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span></code>
 file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function ny($args) {
-   vscode-cli-helper-new-open-file open --template=Python $args
+   vscode-cli-helpers-new-open-file open --template=Python $args
 }
 </pre></div>
 </div>
