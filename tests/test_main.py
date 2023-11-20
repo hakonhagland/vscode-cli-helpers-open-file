@@ -72,6 +72,45 @@ class TestMain:
                 r"""Running: \['.*?code.cmd', '-g'""",
                 caplog.records[-1].msg,
             )
+        elif platform_name == "Darwin":  # pragma: no cover
+            assert re.match(
+                r"""Running: \['.*?/Contents/Resources/app/bin/code', '-g'""",
+                caplog.records[-1].msg,
+            )
+        else:  # pragma: no cover
+            assert caplog.records[-1].msg.startswith("""Running: ['code', '-g'""")
+
+    @pytest.mark.parametrize("platform_name", ["Linux", "Windows", "Darwin", "Unknown"])
+    def test_platform(
+        self,
+        platform_name: str,
+        caplog: LogCaptureFixture,
+        mocker: MockerFixture,
+        data_dir_path: Path,
+        tmp_path: Path,
+    ) -> None:
+        caplog.set_level(logging.INFO)
+        data_dir = data_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=data_dir,
+        )
+        mocker.patch("platform.system", return_value=platform_name)
+        mocker.patch("subprocess.Popen", return_value=None)
+        if platform_name == "Windows":
+            mocker.patch("shutil.which", return_value="code.cmd")
+        runner = CliRunner()
+        with runner.isolated_filesystem(temp_dir=tmp_path):
+            cli_runner_cwd = os.getcwd()
+            args = ["-v", "open", "t.py"]
+            runner.invoke(script.main, args)
+        gen_file = Path(cli_runner_cwd) / "t.py"
+        assert gen_file.exists()
+        if platform_name == "Windows":  # pragma: no cover
+            assert re.match(
+                r"""Running: \['.*?code.cmd', '-g'""",
+                caplog.records[-1].msg,
+            )
         elif platform_name == "Darwin":
             assert re.match(
                 r"""Running: \['.*?/Contents/Resources/app/bin/code', '-g'""",
