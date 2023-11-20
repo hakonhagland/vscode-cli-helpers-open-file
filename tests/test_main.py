@@ -72,6 +72,11 @@ class TestMain:
                 r"""Running: \['.*?code.cmd', '-g'""",
                 caplog.records[-1].msg,
             )
+        elif platform_name == "Darwin":
+            assert re.match(
+                r"""Running: \['.*?/Contents/Resources/app/bin/code', '-g'""",
+                caplog.records[-1].msg,
+            )
         else:  # pragma: no cover
             assert caplog.records[-1].msg.startswith("""Running: ['code', '-g'""")
 

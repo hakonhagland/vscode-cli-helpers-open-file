@@ -41,6 +41,10 @@ class OpenFile:
             if tmp is None:
                 raise OpenFileException("Could not find code.cmd")
             code = tmp
+        elif platform.system() == "Darwin":
+            code = (
+                "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+            )
         cmd = [code, "-g", filename, workspace]
         logging.info(f"Running: {cmd} in directory: {dir_}, workspace: {workspace}")
         subprocess.Popen(cmd, cwd=dir_, start_new_session=True)
