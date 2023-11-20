@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vscode-cli-helpers-open-file"
-version = "0.1.6"
+version = "0.1.8"
 description = "Open files (with templates) in VSCode from the command line"
 authors = ["Håkon Hægland <hakon.hagland@gmail.com>"]
 readme = "README.md"

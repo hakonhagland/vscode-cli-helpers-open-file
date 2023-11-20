@@ -4,8 +4,8 @@ Installation
 To install the ``vscode-cli-helpers-open-file`` script, ensure that you have Python
 version 3.10 or higher.
 
-From PyPI
----------
+From PyPI (recommended)
+-----------------------
 
 .. code-block:: bash
 

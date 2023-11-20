@@ -1,5 +1,5 @@
 TODO (further work)
 ===================
 
-* Test script on macOS
-* Add feature to use a different default filename for each language
+* Test script on macOS and Windows
+* Document source code

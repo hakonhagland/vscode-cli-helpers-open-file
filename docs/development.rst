@@ -1,9 +1,9 @@
 Suggesting changes to the code
 ==============================
 
-Suggestions for improvements are very welcome. Please use the
+Suggestions for improvements are very welcome. Use the
 `GitHub issue tracker <https://github.com/hakonhagland/vscode_cli_helpers.open_file/issues>`_ or submit
-a pull request!
+a pull request.
 
 Pull requests
 -------------
