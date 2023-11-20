@@ -13,7 +13,7 @@ The syntax for the config file is described in the documentation for the
 `configparser <https://docs.python.org/3/library/configparser.html>`_ module
 in the Python standard library.
 
-* To specify the default template to use for creating new files, use the ``Template`` option in the
+* To specify a default template to use for creating new files, use the ``Template`` option in the
   ``[Defaults]`` section. Example ::
 
         [Defaults]
@@ -33,12 +33,12 @@ in the Python standard library.
   Files created from templates "Bash", "Python", "Perl", "Ruby", and "Tcl" will now be made
   executable.
 
-.. note::
+  .. note::
     It is not possible to make the python script directly executable on Windows, see
     section :doc:`windows` for more information of how to work around this.
 
-    The ``Languages`` option is case-sensitive and must match one of the names in the
-    ``[FileExtensions]`` section.
+  The ``Languages`` option is case-sensitive and must match one of the names in the
+  ``[FileExtensions]`` section.
 
 * To specify the editor to use for opening files, use the OS name option in the
   ``[Editor]`` section. Example ::

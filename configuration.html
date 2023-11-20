@@ -52,7 +52,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="template.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="default_filename.html">Default Filename</a></li>
-<li class="toctree-l1"><a class="reference internal" href="file_extension.html">File Extension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_extension.html">Filename Extension</a></li>
 <li class="toctree-l1"><a class="reference internal" href="windows.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
@@ -96,7 +96,7 @@ see <a class="reference internal" href="usage.html"><span class="doc">Usage</spa
 <a class="reference external" href="https://docs.python.org/3/library/configparser.html">configparser</a> module
 in the Python standard library.</p>
 <ul>
-<li><p>To specify the default template to use for creating new files, use the <code class="docutils literal notranslate"><span class="pre">Template</span></code> option in the
+<li><p>To specify a default template to use for creating new files, use the <code class="docutils literal notranslate"><span class="pre">Template</span></code> option in the
 <code class="docutils literal notranslate"><span class="pre">[Defaults]</span></code> section. Example</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Defaults</span><span class="p">]</span>
 <span class="n">Template</span> <span class="o">=</span> <span class="n">Python</span>   <span class="c1"># default template is Python</span>
@@ -115,16 +115,14 @@ language to the <code class="docutils literal notranslate"><span class="pre">Lan
 </div>
 <p>Files created from templates “Bash”, “Python”, “Perl”, “Ruby”, and “Tcl” will now be made
 executable.</p>
-</li>
-</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It is not possible to make the python script directly executable on Windows, see
 section <a class="reference internal" href="windows.html"><span class="doc">Windows</span></a> for more information of how to work around this.</p>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">Languages</span></code> option is case-sensitive and must match one of the names in the
 <code class="docutils literal notranslate"><span class="pre">[FileExtensions]</span></code> section.</p>
-</div>
-<ul>
+</li>
 <li><p>To specify the editor to use for opening files, use the OS name option in the
 <code class="docutils literal notranslate"><span class="pre">[Editor]</span></code> section. Example</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Editor</span><span class="p">]</span>
