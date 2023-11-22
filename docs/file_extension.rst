@@ -15,7 +15,7 @@ explicitly on the command line the default template name under the ``[Default]``
 section will be used instead.
 
 Second, to determine how to create a new filename with correct extension,
-the filename is split into parts by the dot character. And each part is
+the filename is split into parts by the dot character and each part is
 considered separately.
 The specific rules used are best
 illustrated by the following examples for the template ``C++``
