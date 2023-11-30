@@ -74,7 +74,8 @@ class TestMain:
             )
         elif platform_name == "Darwin":  # pragma: no cover
             assert re.match(
-                r"""Running: \['.*?/Contents/Resources/app/bin/code', '-g'""",
+                # r"""Running: \['.*?/Contents/Resources/app/bin/code', '-g'""",
+                r"""Running: \['open', '-a', 'Visual Studio Code', '-g'""",
                 caplog.records[-1].msg,
             )
         else:  # pragma: no cover
@@ -113,7 +114,8 @@ class TestMain:
             )
         elif platform_name == "Darwin":
             assert re.match(
-                r"""Running: \['.*?/Contents/Resources/app/bin/code', '-g'""",
+                # r"""Running: \['.*?/Contents/Resources/app/bin/code', '-g'""",
+                r"""Running: \['open', '-a', 'Visual Studio Code', '-g'""",
                 caplog.records[-1].msg,
             )
         else:  # pragma: no cover
