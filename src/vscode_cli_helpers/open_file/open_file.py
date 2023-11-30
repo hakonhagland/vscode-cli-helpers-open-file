@@ -34,18 +34,19 @@ class OpenFile:
             logging.info(f"File exists: {path}")
         if line_no is not None:
             filename = f"{filename}:{line_no}"
-        code = "code"
+        cmd = ["code"]
         if platform.system() == "Windows":  # pragma: no cover
             # See: https://stackoverflow.com/a/32799942/2173773
             tmp = shutil.which("code.cmd")
             if tmp is None:
                 raise OpenFileException("Could not find code.cmd")
-            code = tmp
+            cmd = [tmp]
         elif platform.system() == "Darwin":
-            code = (
-                "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
-            )
-        cmd = [code, "-g", filename, workspace]
+            # cmd = (
+            #    "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+            # )
+            cmd = ["open", "-a", "Visual Studio Code"]
+        cmd.extend(["-g", filename, workspace])
         logging.info(f"Running: {cmd} in directory: {dir_}, workspace: {workspace}")
         subprocess.Popen(cmd, cwd=dir_, start_new_session=True)
 
