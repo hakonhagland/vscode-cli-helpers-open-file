@@ -1,6 +1,7 @@
 import configparser
 import importlib.resources
 import logging
+import shutil
 import typing
 from configparser import ConfigParser
 from pathlib import Path
@@ -41,6 +42,14 @@ class Config:
             f"Unexpected: Config dir lock file: {msg}. "
             f"The data directory {str(lock_file.parent)} might be owned by another app."
         )
+
+    def copy_default_config(self, path: Path) -> None:
+        """Copy the default config file to the given path."""
+        logging.info(f"Copying default config file to: {str(path)}")
+        default_config = importlib.resources.files(
+            "vscode_cli_helpers.open_file.data"
+        ).joinpath("default_config.ini")
+        shutil.copyfile(str(default_config), str(path))
 
     def get_config_dir(self) -> Path:
         config_dir = platformdirs.user_config_dir(appname=self.appname)
@@ -133,8 +142,7 @@ class Config:
                     f"Config filename {str(path)} exists, but filetype is not file"
                 )
         else:
-            with open(path, "w", encoding="utf_8") as _:
-                pass  # only create empty file
+            self.copy_default_config(path)
         config = configparser.ConfigParser(
             # See https://stackoverflow.com/a/53274707/2173773
             converters={"list": lambda x: [i.strip() for i in x.split(",")]}

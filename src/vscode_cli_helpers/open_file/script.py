@@ -90,7 +90,7 @@ def open(path: Optional[str], template: Optional[str]) -> None:
     recognized, a default template will be used. For more information about specifying the
     default template, see :doc:`/template`.
 
-    If the file exists, it will be opened in VS Code at line 1 or a specified line number.
+    If the file exists, it will be opened in VS Code at line 1 or at a specified line number.
     If the file does not exist, it will be created and the template will be written to the
     file before opening it in VS Code. If the :doc:`template file type <configuration>` is
     "script" it will also be made executable.
