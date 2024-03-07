@@ -8,7 +8,7 @@ coverage:
 	coverage report -m
 
 docs:
-	cd "$(ROOT)"/docs && make clean && make html
+	cd "$(ROOT)" && sphinx-versioned -b "main, v0.1, v0.2" -m main
 
 isort:
 #	isort --diff --check-only --profile black src/ tests/
