@@ -10,4 +10,4 @@ Hi, this script is for you if you:
 * make the script executable as it is created.
 
 For convenience, this script also opens existing files in VS Code. See the
-:doc:`usage` section for more details.
+:doc:`usage` section for more details. xxx
