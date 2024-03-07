@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; vscode-cli-helpers-open-file 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_rst_properties.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Suggesting changes to the code" href="development.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            vscode-cli-helpers-open-file
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vscode-cli-helpers-open-file">vscode-cli-helpers-open-file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vscode-cli-helpers-open-file-edit-config">edit-config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vscode-cli-helpers-open-file-edit-template">edit-template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vscode-cli-helpers-open-file-open">open</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alias.html">Create alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="default_filename.html">Default Filename</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_extension.html">Filename Extension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Source code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">vscode-cli-helpers-open-file</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/hakonhagland/vscode_cli_helpers.open_file/blob/v0.2/docs/usage.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This documentation can also be obtained by running
+<code class="docutils literal notranslate"><span class="pre">vscode-cli-helpers-open-file</span> <span class="pre">--help</span></code> from the terminal window.</p>
+<p>Or, to get help for a subcommand, run
+<code class="docutils literal notranslate"><span class="pre">vscode-cli-helpers-open-file</span> <span class="pre">&lt;subcommand&gt;</span> <span class="pre">--help</span></code>.</p>
+</div>
+<section id="vscode-cli-helpers-open-file">
+<h2>vscode-cli-helpers-open-file<a class="headerlink" href="#vscode-cli-helpers-open-file" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">vscode-cli-helpers-open-file</span></code> is a command line tool for opening new
+or existing files in VS Code and navigating to a specific line.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vscode-cli-helpers-open-file<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-vscode-cli-helpers-open-file-v">
+<span id="cmdoption-vscode-cli-helpers-open-file-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-vscode-cli-helpers-open-file-v" title="Link to this definition"></a></dt>
+<dd><p>Show verbose output</p>
+</dd></dl>
+
+<section id="vscode-cli-helpers-open-file-edit-config">
+<h3>edit-config<a class="headerlink" href="#vscode-cli-helpers-open-file-edit-config" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">vscode-cli-helpers-open-file</span> <span class="pre">edit-config</span></code> lets you edit the config file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vscode-cli-helpers-open-file<span class="w"> </span>edit-config<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="vscode-cli-helpers-open-file-edit-template">
+<h3>edit-template<a class="headerlink" href="#vscode-cli-helpers-open-file-edit-template" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">vscode-cli-helpers-open-file</span> <span class="pre">edit-template</span></code> lets you edit the template file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vscode-cli-helpers-open-file<span class="w"> </span>edit-template<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>TEMPLATE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-vscode-cli-helpers-open-file-edit-template-arg-TEMPLATE">
+<span class="sig-name descname"><span class="pre">TEMPLATE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-vscode-cli-helpers-open-file-edit-template-arg-TEMPLATE" title="Link to this definition"></a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+<section id="vscode-cli-helpers-open-file-open">
+<h3>open<a class="headerlink" href="#vscode-cli-helpers-open-file-open" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">vscode-cli-helpers-open-file</span> <span class="pre">open</span></code> lets you open a new
+or existing file in VS Code and navigating to a specific line number.
+You may consider creating a short alias for the sub commands you use most often, see
+<a class="reference internal" href="alias.html"><span class="doc">Creating an alias</span></a> for more information.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">--template</span></code> option is not used, the file extension of <code class="docutils literal notranslate"><span class="pre">PATH</span></code> will be used
+to determine the template to use. If the <a class="reference internal" href="file_extension.html"><span class="doc">file extension</span></a> is not
+recognized, a default template will be used. For more information about specifying the
+default template, see <a class="reference internal" href="template.html"><span class="doc">Templates</span></a>.</p>
+<p>If the file exists, it will be opened in VS Code at line 1 or at a specified line number.
+If the file does not exist, it will be created and the template will be written to the
+file before opening it in VS Code. If the <a class="reference internal" href="configuration.html"><span class="doc">template file type</span></a> is
+“script” it will also be made executable.</p>
+<p>If no filename is given for PATH, a default filename will be used. For more information
+about specifying the default filename, see <a class="reference internal" href="default_filename.html"><span class="doc">Default Filename</span></a>.</p>
+<p>EXAMPLES</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vscode-cli-helpers-open-file open a.py
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">a.py</span></code> exists, opens it in VS Code and navigates to line 1. If <code class="docutils literal notranslate"><span class="pre">a.py</span></code> does not exist,
+determines the file type from the extension of <code class="docutils literal notranslate"><span class="pre">a.py</span></code> (<code class="docutils literal notranslate"><span class="pre">.py</span></code>). Then creates a
+file <code class="docutils literal notranslate"><span class="pre">a.py</span></code> and writes a template for the file type <code class="docutils literal notranslate"><span class="pre">.py</span></code> to the file. If the
+template type is “script”, the file will also be made executable. Then opens the file
+in VS Code and navigates to line 1.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vscode-cli-helpers-open-file open a
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">a</span></code> exists, opens it in VS Code and navigates to line 1. If <code class="docutils literal notranslate"><span class="pre">a</span></code> does not exist,
+the file type will be determined from the default template (since <code class="docutils literal notranslate"><span class="pre">--template</span></code> option
+is not given). For example, if the default template is “Python”, <code class="docutils literal notranslate"><span class="pre">a.py</span></code> will be
+created and made executable. Then the template will be written to the file
+before opening it in VSCode.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>|   $ vscode-cli-helpers-open-file open a:10
+|   $ vscode-cli-helpers-open-file a.py:10
+</pre></div>
+</div>
+<p>Sames as above but also navigates to line 10</p>
+<p>For more information about editing the template file, see <a class="reference internal" href="template.html"><span class="doc">Templates</span></a>.
+For information about specifying the file type of the templates, see <a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vscode-cli-helpers-open-file<span class="w"> </span>open<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>PATH<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-vscode-cli-helpers-open-file-open-template">
+<span class="sig-name descname"><span class="pre">--template</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;template&gt;</span></span><a class="headerlink" href="#cmdoption-vscode-cli-helpers-open-file-open-template" title="Link to this definition"></a></dt>
+<dd><p>specify the template to use</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-vscode-cli-helpers-open-file-open-arg-PATH">
+<span class="sig-name descname"><span class="pre">PATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-vscode-cli-helpers-open-file-open-arg-PATH" title="Link to this definition"></a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="development.html" class="btn btn-neutral float-right" title="Suggesting changes to the code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Håkon Hægland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other versions</span>
+    v: v0.2
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <div class="injected">
+      <dl>
+        <dt>Tags</dt>
+        <dd class="rtd-current-item">
+          <a href="../v0.2/index.html">v0.2</a>
+        </dd>
+        <dd class="">
+          <a href="../v0.3/index.html">v0.3</a>
+        </dd>
+      </dl>
+      <dl>
+        <dt>Branches</dt>
+        <dd class="">
+          <a href="../main/index.html">main</a>
+        </dd>
+      </dl>
+      <dl>
+        <dt>Search</dt>
+        <dd>
+          <div style="padding: 6px;">
+            <form id="flyout-search-form" class="wy-form" target="_blank"
+              action="../v0.2/index.html/../search.html"
+              method="get">
+              <input type="text" name="q" aria-label="Search docs" placeholder="Search docs">
+            </form>
+          </div>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
