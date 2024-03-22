@@ -1,4 +1,4 @@
-Welcome to ``vscode_cli_helpers.open_file``'s documentation!
+Welcome to ``vscode-cli-helpers-open-file``'s documentation!
 ============================================================
 
 .. toctree::
