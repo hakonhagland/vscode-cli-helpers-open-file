@@ -7,10 +7,16 @@ from pathlib import Path
 from typing import Optional
 
 import click
+from sphinx_click.rst_to_ansi_formatter import (  # type: ignore
+    make_rst_to_ansi_formatter,
+)
 
 from vscode_cli_helpers.open_file.config import Config
 from vscode_cli_helpers.open_file.exceptions import ConfigException
 from vscode_cli_helpers.open_file.open_file import OpenFile
+
+# To be used with make_rst_to_ansi_formatter()
+doc_url = "https://hakonhagland.github.io/vscode-cli-helpers-open-file/main/"
 
 
 def edit_config_file(config: Config) -> None:
@@ -46,7 +52,7 @@ def edit_template_file(config: Config, template: Optional[str]) -> None:
     edit_file(config, path)
 
 
-@click.group()
+@click.group(cls=make_rst_to_ansi_formatter(doc_url, group=True))
 @click.option("--verbose", "-v", is_flag=True, help="Show verbose output")
 @click.pass_context
 def main(ctx: click.Context, verbose: bool) -> None:
@@ -61,14 +67,14 @@ def main(ctx: click.Context, verbose: bool) -> None:
         logging.basicConfig(level=logging.WARNING)
 
 
-@main.command()
+@main.command(cls=make_rst_to_ansi_formatter(doc_url, group=False))  # type: ignore
 def edit_config() -> None:
     """``vscode-cli-helpers-open-file edit-config`` lets you edit the config file"""
     config = Config()
     edit_config_file(config)
 
 
-@main.command()
+@main.command(cls=make_rst_to_ansi_formatter(doc_url, group=False))  # type: ignore
 @click.argument("template", type=str, required=False)
 def edit_template(template: str) -> None:
     """``vscode-cli-helpers-open-file edit-template`` lets you edit the template file"""
@@ -76,7 +82,7 @@ def edit_template(template: str) -> None:
     edit_template_file(config, template)
 
 
-@main.command()
+@main.command(cls=make_rst_to_ansi_formatter(doc_url, group=False))  # type: ignore
 @click.argument("path", type=str, required=False)
 @click.option("--template", type=str, help="specify the template to use")
 def open(path: Optional[str], template: Optional[str]) -> None:
@@ -116,7 +122,6 @@ def open(path: Optional[str], template: Optional[str]) -> None:
     created and made executable. Then the template will be written to the file
     before opening it in VSCode. ::
 
-    \b
       $ vscode-cli-helpers-open-file open a:10
       $ vscode-cli-helpers-open-file a.py:10
 
