@@ -7,9 +7,7 @@ from pathlib import Path
 from typing import Optional
 
 import click
-from sphinx_click.rst_to_ansi_formatter import (  # type: ignore
-    make_rst_to_ansi_formatter,
-)
+from sphinx_click.rst_to_ansi_formatter import make_rst_to_ansi_formatter
 
 from vscode_cli_helpers.open_file.config import Config
 from vscode_cli_helpers.open_file.exceptions import ConfigException

@@ -31,9 +31,13 @@ repos:
       - id: mypy
       # Note: since we run mypy on the tests/ folder also we need to add pytest as
       #       additional dependency
-        additional_dependencies: [platformdirs==4.0.0, configparser==6.0.0,
-                                  pytest==7.4.3, pytest-mock==3.12.0, click==8.1.7]
-        args: [--strict, --implicit-reexport]
+        additional_dependencies:
+          - 'platformdirs==4.0.0'
+          - 'configparser==6.0.0'
+          - 'pytest==7.4.3'
+          - 'pytest-mock==3.12.0'
+          - 'click==8.1.7'
+        args: [--strict, --implicit-reexport']
         pass_filenames: false
         entry: mypy src tests
 -   repo: local
