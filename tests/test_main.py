@@ -122,7 +122,7 @@ class TestMain:
             assert caplog.records[-1].msg.startswith("""Running: ['code', '-g'""")
 
     @pytest.mark.parametrize("os_name", ["Linux", "Windows", "Darwin", "Unknown"])
-    def test_edit_config_file(
+    def test_edit_config_file_os(
         self,
         os_name: str,
         caplog: LogCaptureFixture,
@@ -141,7 +141,7 @@ class TestMain:
         runner = CliRunner()
         args = ["edit-config"]
         if os_name != "Unknown":
-            with runner.isolated_filesystem(temp_dir=tmp_path):
+            with runner.isolated_filesystem(temp_dir=tmp_path):  # noqa: F841
                 runner.invoke(script.main, args)
             if os_name == "Linux":
                 assert caplog.records[-1].msg.startswith("""Running: gedit""")
@@ -157,6 +157,24 @@ class TestMain:
             assert (
                 str(result.exception) == "Config exception: Unknown platform: Unknown"
             )
+
+    def test_edit_config_file_print_path(
+        self,
+        mocker: MockerFixture,
+        data_dir_path: Path,
+        tmp_path: Path,
+    ) -> None:
+        data_dir = data_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=data_dir,
+        )
+        runner = CliRunner()
+        args = ["edit-config", "--print-path"]
+        with runner.isolated_filesystem(temp_dir=tmp_path):  # noqa: F841
+            result = runner.invoke(script.main, args)
+        assert result.exit_code == 0
+        assert result.output.startswith(str(data_dir))
 
     def test_edit_template(
         self,
@@ -178,3 +196,21 @@ class TestMain:
         with runner.isolated_filesystem(temp_dir=tmp_path):
             runner.invoke(script.main, args)
         assert caplog.records[-1].msg.startswith("""Running: gedit""")
+
+    def test_edit_template_print_path(
+        self,
+        mocker: MockerFixture,
+        data_dir_path: Path,
+        tmp_path: Path,
+    ) -> None:
+        data_dir = data_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=data_dir,
+        )
+        runner = CliRunner()
+        args = ["edit-template", "--print-path"]
+        with runner.isolated_filesystem(temp_dir=tmp_path):
+            result = runner.invoke(script.main, args)
+        assert result.exit_code == 0
+        assert result.output.startswith(str(data_dir))

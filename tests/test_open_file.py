@@ -168,3 +168,34 @@ class TestMain:
         with runner.isolated_filesystem(temp_dir=tmp_path):
             runner.invoke(script.main, args)
         assert caplog.records[-1].msg.startswith("""Running: ['code', '-g', 'foo.py'""")
+
+    @pytest.mark.parametrize("platform", ["Linux", "Windows"])
+    def test_prepare_new_file(
+        self,
+        platform: str,
+        caplog: LogCaptureFixture,
+        mocker: MockerFixture,
+        data_dir_path: Path,
+        tmp_path: Path,
+    ) -> None:
+        caplog.set_level(logging.INFO)
+        mocker.patch("platform.system", return_value=platform)
+        data_dir = data_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=data_dir,
+        )
+        mocker.patch("subprocess.Popen", return_value=None)
+        runner = CliRunner()
+        args = ["-v", "open", "--executable", "foo"]
+        with runner.isolated_filesystem(temp_dir=tmp_path):
+            runner.invoke(script.main, args)
+            assert Path("foo.py").exists()
+        if platform == "Windows":
+            assert caplog.records[-1].msg.startswith(
+                """Not setting file permissions on Windows."""
+            )
+        else:
+            assert caplog.records[-1].msg.startswith(
+                """Running: ['code', '-g', 'foo.py'"""
+            )

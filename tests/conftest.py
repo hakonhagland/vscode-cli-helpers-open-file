@@ -32,3 +32,14 @@ def data_dir_path(
     data_dirlock_fn = test_file_path / test_data["data_dir"] / Config.dirlock_fn
     shutil.copy(data_dirlock_fn, data_dir)
     return data_dir
+
+
+@pytest.fixture()
+def config_dir_path(
+    tmp_path: Path, test_file_path: Path, test_data: PytestDataDict
+) -> Path:
+    config_dir = tmp_path / test_data["config_dir"]
+    config_dir.mkdir()
+    config_dirlock_fn = test_file_path / test_data["data_dir"] / Config.dirlock_fn
+    shutil.copy(config_dirlock_fn, config_dir)
+    return config_dir

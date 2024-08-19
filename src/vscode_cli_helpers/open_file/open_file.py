@@ -11,7 +11,15 @@ from vscode_cli_helpers.open_file.exceptions import OpenFileException
 
 
 class OpenFile:
-    def __init__(self, path: Optional[str], template_name: Optional[str]) -> None:
+    def __init__(
+        self,
+        path: Optional[str],
+        template_name: Optional[str],
+        executable: bool,
+        version: int,
+    ) -> None:
+        self.executable = executable
+        self.version = version
         self.config = Config()
         if template_name is None:
             template_name = self.config.get_default_template_name()
@@ -19,8 +27,10 @@ class OpenFile:
             path = self.config.get_default_filename(template_name)
         self.path = path
         self.template_name = template_name
-        filename = Path(path).name
-        dir_ = Path(path).parent
+
+    def open(self) -> None:
+        filename = Path(self.path).name
+        dir_ = Path(self.path).parent
         (basename, line_no) = (
             filename.split(":") if ":" in filename else (filename, None)
         )
@@ -31,9 +41,9 @@ class OpenFile:
         if not path2.exists():
             self.prepare_new_file(path2)
         else:
-            logging.info(f"File exists: {path}")
+            logging.info(f"File exists: {self.path}")
         if line_no is not None:
-            filename = f"{filename}:{line_no}"
+            filename = f"{filename}:{line_no}"  # noqa: E231
         cmd = ["code"]
         if platform.system() == "Windows":  # pragma: no cover
             # See: https://stackoverflow.com/a/32799942/2173773
@@ -89,16 +99,17 @@ class OpenFile:
 
     def prepare_new_file(self, path: Path) -> None:
         with open(path, "w", encoding="utf-8") as f:
-            f.write(self.config.get_template(self.template_name))
+            f.write(self.config.get_template(self.template_name, self.version))
         logging.info(f"Creating file: {path}")
         if platform.system() == "Windows":
-            logging.info("Not making file executable on Windows")
+            if self.executable:
+                logging.warning(
+                    "Not setting file permissions on Windows. "
+                    "File will not be executable."
+                )
         else:
-            if self.config.is_script(self.template_name):
+            if self.executable:
                 os.chmod(path, 0o755)
                 logging.info(f"Setting file permissions to 755: {path}")
             else:
-                logging.info(
-                    f"Not script file type {self.template_name}. "
-                    f"Not setting file permissions: {path}"
-                )
+                logging.info(f"Not setting executable permissions: {path}")

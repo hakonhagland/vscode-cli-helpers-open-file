@@ -88,3 +88,16 @@ class TestMain:
         if not exists:
             Config()
             assert True
+
+    def test_get_template_path(
+        self, caplog: LogCaptureFixture, mocker: MockerFixture, config_dir_path: Path
+    ) -> None:
+        caplog.set_level(logging.INFO)
+        config_dir = config_dir_path
+        mocker.patch(
+            "platformdirs.user_config_dir",
+            return_value=config_dir,
+        )
+        cfg = Config()
+        template = cfg.get_template("C++", 2)
+        assert len(template) == 0

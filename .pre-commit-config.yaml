@@ -26,18 +26,19 @@ repos:
     - id: flake8
       exclude: docs/conf.py
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.4.1
+    rev: v1.11.1
     hooks:
       - id: mypy
       # Note: since we run mypy on the tests/ folder also we need to add pytest as
       #       additional dependency
         additional_dependencies:
-          - 'platformdirs==4.0.0'
-          - 'configparser==6.0.0'
-          - 'pytest==7.4.3'
-          - 'pytest-mock==3.12.0'
-          - 'click==8.1.7'
-        args: [--strict, --implicit-reexport']
+          - platformdirs==4.2.0
+          - pytest==8.1.1
+          - pytest-mock==3.12.0
+          - click==8.1.7
+          - sphinx-click-rst-to-ansi-formatter==0.1.1
+          - types-colorama==0.4.15.20240311
+        args: []
         pass_filenames: false
         entry: mypy src tests
 -   repo: local

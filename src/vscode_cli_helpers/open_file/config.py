@@ -79,38 +79,46 @@ class Config:
     def get_default_template_name(self) -> str:
         return self.config["Defaults"]["Template"]
 
-    def get_template(self, language: str) -> str:
-        path = self.get_template_path(language)
+    def get_template(self, language: str, version: int) -> str:
+        path = self.get_template_path(language, version)
         logging.info(f"Reading {language} template from: {path}")
         with open(str(path), "r", encoding="utf_8") as fp:
             return fp.read()
 
-    def get_template_path(self, language: Optional[str]) -> Path:
+    def get_template_path(self, language: Optional[str], version: int) -> Path:
         if language is None:
             language = self.get_default_template_name()
         dir_ = self.get_config_dir()
         template_dir = dir_ / "templates"
         if not template_dir.exists():
             template_dir.mkdir(parents=True)
-        path = template_dir / f"{language}.txt"
+        filename = f"{language}"
+        if version > 1:
+            filename += f"__{version}"
+        path = template_dir / f"{filename}.txt"
         if not path.exists():
-            logging.info(
-                f"No template found for {language}. Looking for a default template..."
-            )
-            def_path = importlib.resources.files(
-                "vscode_cli_helpers.open_file.data.templates"
-            ).joinpath(f"{language}.txt")
-            def_path = typing.cast(Path, def_path)
             template = ""
-            if def_path.exists():
-                logging.info("Default template found. Using it.")
-                with open(str(def_path), "r", encoding="utf_8") as fp:
-                    template = fp.read()
+            if version > 1:
+                logging.info(
+                    f"No template file {filename}.txt found. Creating empty file."
+                )
             else:
                 logging.info(
-                    f"No default template found for {language}.."
-                    f"Creating empty template."
+                    f"No template found for {language}. Looking for a default template..."
                 )
+                def_path = importlib.resources.files(
+                    "vscode_cli_helpers.open_file.data.templates"
+                ).joinpath(f"{language}.txt")
+                def_path = typing.cast(Path, def_path)
+                if def_path.exists():
+                    logging.info("Default template found. Using it.")
+                    with open(str(def_path), "r", encoding="utf_8") as fp:
+                        template = fp.read()
+                else:
+                    logging.info(
+                        f"No default template found for {language}.."
+                        f"Creating empty template."
+                    )
             with open(path, "w", encoding="utf_8") as fp:
                 fp.write(template)
         return path
@@ -126,13 +134,6 @@ class Config:
                 raise ConfigException(
                     f"Could not find file extension for language: {language}"
                 )
-
-    def is_script(self, language: str) -> bool:
-        script_languages = self.config.getlist("ScriptFiles", "Languages")  # type: ignore
-        if language in script_languages:
-            return True
-        else:
-            return False
 
     def read_config(self) -> None:
         path = self.get_config_file()

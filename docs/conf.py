@@ -35,7 +35,7 @@ html_static_path = ["_static"]
 html_context = {
     "display_github": True,
     "github_user": "hakonhagland",
-    "github_repo": "vscode_cli_helpers.open_file",
+    "github_repo": "vscode-cli-helpers-open-file",
     "github_version": "main",
     "conf_py_path": "/docs/",
 }
