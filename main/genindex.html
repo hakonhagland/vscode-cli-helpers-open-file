@@ -74,7 +74,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Index</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/hakonhagland/vscode_cli_helpers.open_file/blob/main/docs/genindex" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/hakonhagland/vscode-cli-helpers-open-file/blob/main/docs/genindex" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -98,12 +98,37 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    --executable
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-executable">vscode-cli-helpers-open-file-open command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --no-executable
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-executable">vscode-cli-helpers-open-file-open command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --print-path
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-edit-config-print-path">vscode-cli-helpers-open-file-edit-config command line option</a>
+</li>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-edit-template-print-path">vscode-cli-helpers-open-file-edit-template command line option</a>
+</li>
+      </ul></li>
+      <li>
     --template
 
       <ul>
         <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-template">vscode-cli-helpers-open-file-open command line option</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     --verbose
 
@@ -111,8 +136,15 @@
         <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-v">vscode-cli-helpers-open-file command line option</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --version
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-edit-template-version">vscode-cli-helpers-open-file-edit-template command line option</a>
+</li>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-version">vscode-cli-helpers-open-file-open command line option</a>
+</li>
+      </ul></li>
       <li>
     -v
 
@@ -189,9 +221,20 @@
 </li>
       </ul></li>
       <li>
+    vscode-cli-helpers-open-file-edit-config command line option
+
+      <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-edit-config-print-path">--print-path</a>
+</li>
+      </ul></li>
+      <li>
     vscode-cli-helpers-open-file-edit-template command line option
 
       <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-edit-template-print-path">--print-path</a>
+</li>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-edit-template-version">--version</a>
+</li>
         <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-edit-template-arg-TEMPLATE">TEMPLATE</a>
 </li>
       </ul></li>
@@ -201,7 +244,13 @@
     vscode-cli-helpers-open-file-open command line option
 
       <ul>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-executable">--executable</a>
+</li>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-executable">--no-executable</a>
+</li>
         <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-template">--template</a>
+</li>
+        <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-version">--version</a>
 </li>
         <li><a href="usage.html#cmdoption-vscode-cli-helpers-open-file-open-arg-PATH">PATH</a>
 </li>
@@ -238,15 +287,15 @@
       </div>
     </section>
   </div>
-  
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Other versions</span>
-    v: main
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <div class="injected">
+  <div class="injected">
+  <div class="rst-versions " data-toggle="rst-versions" role="note"
+    aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book">&nbsp;&nbsp;Other versions&nbsp;&nbsp;</span>
+      v: main
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
       <dl>
         <dt>Tags</dt>
         <dd class="">
@@ -266,9 +315,8 @@
         <dt>Search</dt>
         <dd>
           <div style="padding: 6px;">
-            <form id="flyout-search-form" class="wy-form" target="_blank"
-              action="../main/index.html/../search.html"
-              method="get">
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="
+              ../main/index.html/../search.html" method="get">
               <input type="text" name="q" aria-label="Search docs" placeholder="Search docs">
             </form>
           </div>
@@ -276,8 +324,7 @@
       </dl>
     </div>
   </div>
-</div>
-<script>
+</div><script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });

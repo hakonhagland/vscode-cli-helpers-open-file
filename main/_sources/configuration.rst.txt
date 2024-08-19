@@ -13,7 +13,18 @@ The syntax for the config file is described in the documentation for the
 `configparser <https://docs.python.org/3/library/configparser.html>`_ module
 in the Python standard library.
 
-* To specify a default template to use for creating new files, use the ``Template`` option in the
+* Refer to :doc:`/usage`: When using the ``open`` sub command, if the ``--template``
+  option is not used, the file extension of the filename will be used to determine the template.
+  For example, if you try to open ``test.py`` and if the extension ``.py`` has been declared like
+  this in the config file ::
+
+        [FileExtensions]
+        py = Python
+
+   the ``Python.txt`` template will be used.  the Python the :doc:`file extension <file_extension>` is not
+    recognized, a default template will be used. For more information about specifying the
+    default template, see :doc:`/usage`.
+To specify a default template to use for creating new files, use the ``Template`` option in the
   ``[Defaults]`` section. Example ::
 
         [Defaults]

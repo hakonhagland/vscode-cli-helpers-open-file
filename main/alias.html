@@ -82,7 +82,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Creating an alias</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/hakonhagland/vscode_cli_helpers.open_file/blob/main/docs/alias.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/hakonhagland/vscode-cli-helpers-open-file/blob/main/docs/alias.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -93,13 +93,17 @@
   <section id="creating-an-alias">
 <h1>Creating an alias<a class="headerlink" href="#creating-an-alias" title="Link to this heading"></a></h1>
 <p>If you are using the <code class="docutils literal notranslate"><span class="pre">vscode-cli-helpers-open-file</span> <span class="pre">open</span></code> command
-line script frequently, you may want to create a short alias for it like <code class="docutils literal notranslate"><span class="pre">ny</span></code>
-to avoid typing the full command each time.</p>
+line script frequently, you almost certainly want to create a short alias for each
+file type. For example, to open a new Python file and make the file executable
+(i.e. <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">&lt;file&gt;</span></code>) you could create an alias with name <code class="docutils literal notranslate"><span class="pre">np</span></code> or <code class="docutils literal notranslate"><span class="pre">ny</span></code> (for “new Python”) that
+includes everything except the file name. This way, you can quickly create a new Python file
+by typing <code class="docutils literal notranslate"><span class="pre">ny</span> <span class="pre">&lt;filename&gt;</span></code> in the terminal window. Here is more information of how you can create
+an alias on different operating systems:</p>
 <section id="linux">
 <h2>Linux<a class="headerlink" href="#linux" title="Link to this heading"></a></h2>
 <p>To create an alias on Linux, add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>
 file (if you are using Bash shell):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helpers-open-file open --template=Python&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helpers-open-file open --template=Python --executable&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -107,7 +111,7 @@ file (if you are using Bash shell):</p>
 <h2>macOS<a class="headerlink" href="#macos" title="Link to this heading"></a></h2>
 <p>To create an alias on macOS, add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> or
 <code class="docutils literal notranslate"><span class="pre">~/.zshrc</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helpers-open-file open --template=Python&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ǹy</span><span class="o">=</span><span class="s1">&#39;vscode-cli-helpers-open-file open --template=Python --executable&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -117,7 +121,7 @@ file (if you are using Bash shell):</p>
 <code class="docutils literal notranslate"><span class="pre">%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span></code>
 file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function ny($args) {
-   vscode-cli-helpers-new-open-file open --template=Python $args
+   vscode-cli-helpers-new-open-file open --template=Python --executable $args
 }
 </pre></div>
 </div>
@@ -148,15 +152,15 @@ file:</p>
       </div>
     </section>
   </div>
-  
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Other versions</span>
-    v: main
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <div class="injected">
+  <div class="injected">
+  <div class="rst-versions " data-toggle="rst-versions" role="note"
+    aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book">&nbsp;&nbsp;Other versions&nbsp;&nbsp;</span>
+      v: main
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
       <dl>
         <dt>Tags</dt>
         <dd class="">
@@ -176,9 +180,8 @@ file:</p>
         <dt>Search</dt>
         <dd>
           <div style="padding: 6px;">
-            <form id="flyout-search-form" class="wy-form" target="_blank"
-              action="../main/index.html/../search.html"
-              method="get">
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="
+              ../main/index.html/../search.html" method="get">
               <input type="text" name="q" aria-label="Search docs" placeholder="Search docs">
             </form>
           </div>
@@ -186,8 +189,7 @@ file:</p>
       </dl>
     </div>
   </div>
-</div>
-<script>
+</div><script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });

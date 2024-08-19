@@ -77,7 +77,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Introduction</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/hakonhagland/vscode_cli_helpers.open_file/blob/main/docs/introduction.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/hakonhagland/vscode-cli-helpers-open-file/blob/main/docs/introduction.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -87,15 +87,25 @@
              
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
-<p>Hi, this script is for you if you:</p>
+<p>This script makes it easier to create terminal aliases to quickly create new scripts
+or files from templates and open them in the VS Code editor. It is especially useful if you:</p>
 <ul class="simple">
-<li><p>Use VS Code editor, and</p></li>
-<li><p>you are using the command line to create new scripts, and</p></li>
+<li><p>You are using the command line to create new scripts, and</p></li>
 <li><p>want to create the new script from a template, and</p></li>
-<li><p>open it in the currently running instance of VS Code for the given directory, or</p></li>
-<li><p>make the script executable as it is created.</p></li>
+<li><p>open it in the currently running instance of VS Code for the given directory, and</p></li>
+<li><p>optionally, make the script executable as it is created.</p></li>
 </ul>
-<p>For convenience, this script also opens existing files in VS Code. See the
+<p>For convenience, this script also opens existing files in VS Code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the script can be used directly to do the above, it would typically involve
+too much typing to make it really useful.
+Instead, the script is designed to be used in conjunction with
+terminal aliases. This way, you can create new scripts with a single short command
+involving only a minimal set of keystrokes: the alias name (you would want to make this name
+as short as possible) and the filename. See the <a class="reference internal" href="alias.html"><span class="doc">Creating an alias</span></a> section for more details.</p>
+</div>
+<p>See the
 <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section for more details.</p>
 </section>
 
@@ -123,15 +133,15 @@
       </div>
     </section>
   </div>
-  
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Other versions</span>
-    v: main
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <div class="injected">
+  <div class="injected">
+  <div class="rst-versions " data-toggle="rst-versions" role="note"
+    aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book">&nbsp;&nbsp;Other versions&nbsp;&nbsp;</span>
+      v: main
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
       <dl>
         <dt>Tags</dt>
         <dd class="">
@@ -151,9 +161,8 @@
         <dt>Search</dt>
         <dd>
           <div style="padding: 6px;">
-            <form id="flyout-search-form" class="wy-form" target="_blank"
-              action="../main/index.html/../search.html"
-              method="get">
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="
+              ../main/index.html/../search.html" method="get">
               <input type="text" name="q" aria-label="Search docs" placeholder="Search docs">
             </form>
           </div>
@@ -161,8 +170,7 @@
       </dl>
     </div>
   </div>
-</div>
-<script>
+</div><script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
